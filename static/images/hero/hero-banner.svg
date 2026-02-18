@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0074D9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#001f3f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7FDBCA;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0074D9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Ocean background -->
+  <rect width="1200" height="600" fill="url(#oceanGradient)"/>
+  
+  <!-- Waves -->
+  <path d="M0,400 Q300,350 600,400 T1200,400 L1200,600 L0,600 Z" fill="url(#waveGradient)" opacity="0.6"/>
+  <path d="M0,450 Q300,400 600,450 T1200,450 L1200,600 L0,600 Z" fill="#0074D9" opacity="0.4"/>
+  
+  <!-- Surfboard silhouette -->
+  <ellipse cx="300" cy="350" rx="40" ry="80" fill="#F0E5CF" opacity="0.3" transform="rotate(-20 300 350)"/>
+  <ellipse cx="900" cy="380" rx="35" ry="75" fill="#F0E5CF" opacity="0.3" transform="rotate(25 900 380)"/>
+  
+  <!-- People silhouettes -->
+  <circle cx="250" cy="320" r="15" fill="#F0E5CF" opacity="0.4"/>
+  <rect x="240" y="340" width="20" height="40" rx="5" fill="#F0E5CF" opacity="0.4"/>
+  <circle cx="950" cy="340" r="15" fill="#F0E5CF" opacity="0.4"/>
+  <rect x="940" y="360" width="20" height="40" rx="5" fill="#F0E5CF" opacity="0.4"/>
+  
+  <!-- Text -->
+  <text x="600" y="150" font-size="48" font-weight="bold" text-anchor="middle" fill="white" opacity="0.9">
+    Open Ocean Collective
+  </text>
+  <text x="600" y="210" font-size="24" text-anchor="middle" fill="#7FDBCA" opacity="0.9">
+    Encouraging Diversity in British Surfing
+  </text>
+</svg>
