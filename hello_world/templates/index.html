@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Open Ocean Collective{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1>Open Ocean Collective</h1>
+        <p class="lead">Encouraging Diversity in British Surfing</p>
+        <p class="mb-4">Building an inclusive community where everyone feels welcome on the waves</p>
+        <a href="#mission" class="btn btn-light btn-lg me-2">Learn More</a>
+        <a href="#contact" class="btn btn-outline-light btn-lg">Get Involved</a>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section id="mission" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Mission</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-heart text-danger fa-3x mb-3"></i>
+                        <h5 class="card-title">Inclusivity</h5>
+                        <p class="card-text">We believe surfing is for everyone, regardless of background, gender, race, or ability.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users text-info fa-3x mb-3"></i>
+                        <h5 class="card-title">Community</h5>
+                        <p class="card-text">Building strong connections and support networks within the British surfing community.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-hand-holding-heart text-warning fa-3x mb-3"></i>
+                        <h5 class="card-title">Support</h5>
+                        <p class="card-text">Providing resources, mentorship, and opportunities for underrepresented groups in surfing.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-water text-success fa-3x mb-3"></i>
+                        <h5 class="card-title">Ocean Stewardship</h5>
+                        <p class="card-text">Protecting and preserving our beaches and ocean for future generations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">About Us</h2>
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <img src="https://via.placeholder.com/500x300?text=Open+Ocean+Collective" alt="Open Ocean Collective" class="img-fluid rounded">
+            </div>
+            <div class="col-lg-6">
+                <p>The Open Ocean Collective is dedicated to creating a more diverse and inclusive surfing community in Britain. We work to break down barriers and build pathways for people from all backgrounds to enjoy and participate in surfing.</p>
+                <p>Through community events, mentorship programs, and advocacy, we're working to transform British surfing into a space where everyone feels welcome and valued.</p>
+                <p>Whether you're a beginner taking your first paddle or an experienced surfer looking to give back, there's a place for you in the Open Ocean Collective.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Get In Touch</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <i class="fas fa-envelope text-ocean fa-3x mb-3"></i>
+                    <h5>Email</h5>
+                    <p><a href="mailto:info@openocean.org" class="text-decoration-none">info@openocean.org</a></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <i class="fas fa-map-marker-alt text-ocean fa-3x mb-3"></i>
+                    <h5>Location</h5>
+                    <p>United Kingdom</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <i class="fas fa-phone text-ocean fa-3x mb-3"></i>
+                    <h5>Phone</h5>
+                    <p><a href="tel:+441234567890" class="text-decoration-none">+44 (0) 123 456 7890</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

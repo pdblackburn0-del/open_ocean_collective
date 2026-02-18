@@ -1,0 +1,240 @@
+/* Open Ocean Collective - Custom Styles */
+
+:root {
+    --ocean-dark: #001f3f;
+    --ocean-blue: #0074D9;
+    --ocean-light: #7FDBCA;
+    --sand: #F0E5CF;
+    --text-dark: #2c3e50;
+    --text-light: #ecf0f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+/* Navigation Header */
+.navbar {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-blue) 100%) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.navbar-brand:hover {
+    color: var(--ocean-light) !important;
+}
+
+.navbar-nav .nav-link {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--ocean-light) !important;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--ocean-light);
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section (if used) */
+.hero-section {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-blue) 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-blue) 100%);
+    color: white;
+    border: none;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-blue) 100%);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--ocean-light) 100%);
+    transform: scale(1.05);
+}
+
+.btn-outline-primary {
+    color: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+}
+
+.btn-outline-primary:hover {
+    background: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, #0a1929 100%) !important;
+    margin-top: auto;
+    border-top: 3px solid var(--ocean-blue);
+}
+
+footer h5 {
+    color: var(--ocean-light);
+}
+
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--ocean-light) !important;
+}
+
+footer hr {
+    opacity: 0.3;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 116, 217, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: var(--ocean-blue);
+    color: white !important;
+    transform: translateY(-3px);
+}
+
+/* Section Spacing */
+section {
+    padding: 60px 0;
+}
+
+section h2 {
+    color: var(--ocean-dark);
+    font-weight: bold;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ocean-blue), var(--ocean-light));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 40px 0;
+    }
+}
+
+/* Utility Classes */
+.text-ocean {
+    color: var(--ocean-blue);
+}
+
+.bg-ocean {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-blue) 100%);
+}
+
+.border-ocean {
+    border-color: var(--ocean-blue) !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ocean-blue);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ocean-dark);
+}
