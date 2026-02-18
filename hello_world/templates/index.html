@@ -6,12 +6,9 @@
 
 {% block content %}
 <!-- Hero Section with Background Image -->
-<section class="hero-section hero-with-image position-relative">
-    <div class="hero-image-container">
-        <img src="{% static 'images/hero/fe6a28c0-d99e-43b8-bfab-224a2a5ca72b.png' %}" alt="Diverse surfers enjoying the ocean" class="hero-image">
-        <div class="hero-overlay"></div>
-    </div>
-    <div class="hero-content position-relative">
+<section class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?w=1200&h=600&fit=crop'); background-size: cover; background-position: center; min-height: 600px; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 31, 63, 0.5); z-index: 1;"></div>
+    <div class="hero-content position-relative" style="z-index: 2;">
         <div class="container">
             <h1>Open Ocean Collective</h1>
             <p class="lead">Encouraging Diversity in British Surfing</p>
