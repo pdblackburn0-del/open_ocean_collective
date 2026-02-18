@@ -9,18 +9,18 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import os
+
 from pathlib import Path
+import os
 import dj_database_url
+if os.path.isfile('env.py'):
+    import env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Database configuration (works locally and on Heroku)
 DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-    )
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 # Quick-start development settings - unsuitable for production
