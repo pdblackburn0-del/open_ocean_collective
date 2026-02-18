@@ -27,15 +27,16 @@ DATABASES = {
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-if os.path.isfile("env.py"):
+if os.path.isfile(BASE_DIR / "env.py"):
     import env
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com",]
 
 
 # Application definition
