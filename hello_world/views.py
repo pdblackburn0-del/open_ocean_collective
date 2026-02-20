@@ -1,31 +1,35 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
-from .forms import SignUpForm
+from allauth.account.forms import SignupForm
+
 
 def index(request):
     return render(request, 'index.html')
 
+
 def login(request):
     return render(request, 'login.html')
 
+
 def signup(request):
-    """Handle user registration"""
+    """Handle user registration using allauth"""
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            messages.success(request, 'Account created successfully! Please log in.')
-            # Optionally log the user in automatically
-            # auth_login(request, user)
-            # return redirect('hello_world:index')
-            return redirect('hello_world:login')
+            form.save(request)
+            messages.success(request, 'Account created successfully! Please check your email to verify your account.')
+            return redirect('hello_world:index')
         else:
-            # Display form errors
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f'{field}: {error}')
+            # Pass form with errors to template
+            return render(request, 'signup.html', {'form': form})
     else:
-        form = SignUpForm()
+        form = SignupForm()
     
     return render(request, 'signup.html', {'form': form})
+
+
+# Step 5: Member-only page
+@login_required
+def create_story(request):
+    return render(request, 'create_story.html')

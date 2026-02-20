@@ -176,3 +176,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net",
 ]
+
+ACCOUNT_FORMS = {
+    "signup": "hello_world.forms.CustomSignupForm",
+}
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

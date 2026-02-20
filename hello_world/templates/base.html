@@ -54,7 +54,15 @@
 
     <!-- Main Content -->
     <main class="flex-shrink-0">
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+    <a href="{% url 'account_logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'account_login' %}">Login</a>
+    <a href="{% url 'account_signup' %}">Register</a>
+{% endif %}
+{% endblock %}
     </main>
 
     <!-- Footer -->
