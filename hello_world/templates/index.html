@@ -5,165 +5,18 @@
 {% load static %}
 
 {% block content %}
-<!-- Hero Section with Background Image -->
-<section class="hero-section" style="background-image: url('https://res.cloudinary.com/dwe00uiuy/image/upload/c_auto,h_600,w_600/b_rgb:3448C5,c_pad,g_west,h_600,w_1200/co_rgb:EBF54C,l_text:Helvetica_40_normal_left_line_spacing_-14:Open%2520Ocean%2520%250ACollective/fl_layer_apply,fl_no_overflow,g_east,x_363,y_-197/b_rgb:3448C5/175b01cf-39d8-4018-8041-d2e23fa33386_xqkkj3.png'); background-size: cover; background-position: center; min-height: 600px; position: relative;">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 31, 63, 0.5); z-index: 1;"></div>
-    <div class="hero-content position-relative" style="z-index: 2;">
-        <div class="container">
-            <h1>Open Ocean Collective</h1>
-            <p class="lead">Encouraging Diversity in British Surfing</p>
-            <p class="mb-4">Building an inclusive community where everyone feels welcome on the waves</p>
-            <a href="#meetups" class="btn btn-light btn-lg me-2">Join a Meetup</a>
-            <a href="#stories" class="btn btn-outline-light btn-lg">Read Stories</a>
-        </div>
+<!-- Full-width Hero Image Only -->
+<section class="hero-section mb-5 p-0 position-relative" style="overflow:hidden;">
+    <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png" alt="Open Ocean Collective Hero" style="width:100vw; max-width:100%; height:auto; display:block; margin:0 auto;">
+    <div style="position:absolute; top:3cm; left:0; width:100vw; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; z-index:2;">
+           <h2 style="color:#fff; text-shadow:0 2px 16px rgba(0,0,0,0.5); font-size:2.5rem; font-weight:bold; margin-top:0;">Encouraging Diversity in British surfing</h2>
+           <a href="{% url 'hello_world:meetups' %}" class="btn btn-primary btn-lg mt-3" style="box-shadow:0 2px 8px rgba(0,0,0,0.2);">Join our next meet up here!</a>
     </div>
 </section>
+
 
 <!-- Meetups Section -->
-<section id="meetups" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Upcoming Meetups</h2>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-calendar text-info fa-3x mb-3"></i>
-                        <h5 class="card-title">Weekly Surf Sessions</h5>
-                        <p class="card-text">Join us for beginner-friendly surf sessions every weekend at our local beaches.</p>
-                        <a href="#" class="btn btn-sm btn-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-users text-success fa-3x mb-3"></i>
-                        <h5 class="card-title">Community Events</h5>
-                        <p class="card-text">Networking events, workshops, and social gatherings for all skill levels.</p>
-                        <a href="#" class="btn btn-sm btn-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-graduation-cap text-warning fa-3x mb-3"></i>
-                        <h5 class="card-title">Coaching Sessions</h5>
-                        <p class="card-text">Expert mentorship and coaching from experienced surfers in our community.</p>
-                        <a href="#" class="btn btn-sm btn-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-earth text-danger fa-3x mb-3"></i>
-                        <h5 class="card-title">Beach Cleanups</h5>
-                        <p class="card-text">Join us in protecting our oceans through environmental conservation efforts.</p>
-                        <a href="#" class="btn btn-sm btn-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Stories Section -->
-<section id="stories" class="bg-light py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Member Stories</h2>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Breaking Barriers in the Water</h5>
-                        <p class="card-text text-muted mb-3">Sarah's Journey</p>
-                        <p class="card-text">"Joining Open Ocean Collective changed my life. I found not just a community of surfers, but a supportive family that celebrates diversity. Now I help mentor other women getting into surfing."</p>
-                        <small class="text-secondary">- Sarah M., London</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">From Beginner to Advocate</h5>
-                        <p class="card-text text-muted mb-3">Marcus's Journey</p>
-                        <p class="card-text">"As someone from an underrepresented background, I was hesitant about surfing. The Open Ocean Collective made me feel welcome from day one and helped me realize the ocean belongs to all of us."</p>
-                        <small class="text-secondary">- Marcus K., Cornwall</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Building Community Through Waves</h5>
-                        <p class="card-text text-muted mb-3">Amira's Journey</p>
-                        <p class="card-text">"What started as a way to learn surfing became my passion. I'm now organizing events and helping create pathways for other diverse surfers to find their place in this incredible community."</p>
-                        <small class="text-secondary">- Amira H., Brighton</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Ocean Stewardship Matters</h5>
-                        <p class="card-text text-muted mb-3">James's Journey</p>
-                        <p class="card-text">"I've learned that being part of this community means protecting the beaches we love. The collective approach to environmental responsibility inspired me to become an ocean conservation advocate."</p>
-                        <small class="text-secondary">- James T., Devon</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-5">
-            <a href="#" class="btn btn-primary btn-lg">Share Your Story</a>
-        </div>
-    </div>
-</section>
-
-<!-- Mission Section -->
-<section id="mission" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Our Mission</h2>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-heart text-danger fa-3x mb-3"></i>
-                        <h5 class="card-title">Inclusivity</h5>
-                        <p class="card-text">We believe surfing is for everyone, regardless of background, gender, race, or ability.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-users text-info fa-3x mb-3"></i>
-                        <h5 class="card-title">Community</h5>
-                        <p class="card-text">Building strong connections and support networks within the British surfing community.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-hand-holding-heart text-warning fa-3x mb-3"></i>
-                        <h5 class="card-title">Support</h5>
-                        <p class="card-text">Providing resources, mentorship, and opportunities for underrepresented groups in surfing.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-water text-success fa-3x mb-3"></i>
-                        <h5 class="card-title">Ocean Stewardship</h5>
-                        <p class="card-text">Protecting and preserving our beaches and ocean for future generations.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Contact Section -->
 <section id="contact" class="bg-light py-5">
