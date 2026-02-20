@@ -41,12 +41,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item ms-2">
+                        <span class="nav-link text-light">Logged in as <strong>{{ user.username }}</strong></span>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="nav-link btn btn-danger px-3" href="{% url 'account_logout' %}">Log Out</a>
+                    </li>
+                    {% else %}
                     <li class="nav-item ms-2">
                         <a class="nav-link btn-outline-light px-3" href="{% url 'hello_world:login' %}">Log In</a>
                     </li>
                     <li class="nav-item ms-2">
                         <a class="nav-link btn btn-light px-3" href="{% url 'hello_world:signup' %}" style="color: #001f3f;">Sign Up</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
