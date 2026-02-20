@@ -18,10 +18,11 @@
 </head>
 <body>
     <!-- Navigation Header -->
-    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <header class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom">
         <nav class="container-fluid px-4">
             <a class="navbar-brand fw-bold" href="{% url 'hello_world:index' %}">
-                <i class="fas fa-water me-2"></i>Open Ocean Collective
+                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621390/Screenshot_2026-02-17_at_13.06.43_vcnitq.png" alt="Open Ocean Collective" height="50" class="me-2">
+                <span class="align-middle">Open Ocean Collective</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,17 +46,17 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item ms-2">
-                        <span class="nav-link text-light">Logged in as <strong>{{ user.username }}</strong></span>
+                        <span class="nav-link text-dark">Logged in as <strong>{{ user.username }}</strong></span>
                     </li>
                     <li class="nav-item ms-2">
                         <a class="nav-link btn btn-danger px-3" href="{% url 'account_logout' %}">Log Out</a>
                     </li>
                     {% else %}
                     <li class="nav-item ms-2">
-                        <a class="nav-link btn-outline-light px-3" href="{% url 'hello_world:login' %}">Log In</a>
+                        <a class="nav-link btn btn-outline-dark px-3" href="{% url 'hello_world:login' %}">Log In</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="nav-link btn btn-light px-3" href="{% url 'hello_world:signup' %}" style="color: #001f3f;">Sign Up</a>
+                        <a class="nav-link btn btn-primary px-3" href="{% url 'hello_world:signup' %}" style="color: white;">Sign Up</a>
                     </li>
                     {% endif %}
                 </ul>
