@@ -32,9 +32,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'hello_world:index' %}">Home</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#meetups">Meetups</a>
+                        <a class="nav-link" href="{% url 'hello_world:meetups' %}">Meetups</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#stories">Stories</a>
                     </li>

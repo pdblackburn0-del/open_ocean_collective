@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 from allauth.account.forms import SignupForm
+from .models import Meetup, MeetupSignup
 
 
 def index(request):
@@ -47,3 +48,30 @@ def signup(request):
 @login_required
 def create_story(request):
     return render(request, 'create_story.html')
+
+
+@login_required
+def meetups(request):
+    """Display available meetups and handle signup"""
+    if request.method == 'POST':
+        meetup_id = request.POST.get('meetup_id')
+        try:
+            meetup = Meetup.objects.get(id=meetup_id)
+            # Check if already signed up
+            if MeetupSignup.objects.filter(user=request.user, meetup=meetup).exists():
+                messages.warning(request, f'You are already signed up for {meetup.get_location_display()}!')
+            else:
+                MeetupSignup.objects.create(user=request.user, meetup=meetup)
+                messages.success(request, f'Successfully signed up for {meetup.get_location_display()}!')
+        except Meetup.DoesNotExist:
+            messages.error(request, 'Meetup not found.')
+        return redirect('hello_world:meetups')
+    
+    meetups_list = Meetup.objects.all()
+    user_signups = MeetupSignup.objects.filter(user=request.user).values_list('meetup_id', flat=True)
+    
+    context = {
+        'meetups': meetups_list,
+        'user_signups': user_signups,
+    }
+    return render(request, 'meetups.html', context)
