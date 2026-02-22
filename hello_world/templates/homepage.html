@@ -5,46 +5,106 @@
 {% load static %}
 
 {% block content %}
-<!-- Full-width Hero Image Only -->
-<section class="hero-section mb-5 p-0 position-relative" style="overflow:hidden;">
-    <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png" alt="Open Ocean Collective Hero" style="width:100vw; max-width:100%; height:auto; display:block; margin:0 auto;">
-    <div style="position:absolute; top:3cm; left:0; width:100vw; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; z-index:2; font-family: 'Texturina', serif !important;">
-        <h2 style="color:#fff; text-shadow:0 2px 16px rgba(0,0,0,0.5); font-size:2.5rem; font-weight:bold; margin-top:0; font-family: 'Texturina', serif !important;">Encouraging Diversity in British surfing</h2>
-        <a href="{% url 'hello_world:meetups' %}" class="btn btn-primary btn-lg mt-3" style="box-shadow:0 2px 8px rgba(0,0,0,0.2); font-family: 'Texturina', serif !important;">Join our next meet up here!</a>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Radley:ital@0;1&display=swap');
+
+.hero {
+    background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png") no-repeat center center/cover;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding-top: 3rem;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero p {
+    font-family: 'Estonia', cursive;
+    font-size: 6rem;
+    margin-bottom: 40px;
+    color: whitesmoke;
+}
+
+.btn-cta {
+    margin: 10px;
+    padding: 14px 40px;
+    font-weight: 600;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+    font-family: 'Radley', serif;
+    font-size: 1.3rem;
+}
+
+.enter-btn {
+    font-size: 1.6rem;
+    padding: 10px 60px;
+}
+
+.auth-buttons {
+    margin-top: 60px;
+}
+
+.hero-logo {
+    max-width: 450px;
+    height: auto;
+}
+.lead {
+    font-family: 'Radley', serif;
+    color: grey;
+}
+.py-5 {
+    background-color: antiquewhite;
+}
+/* Mobile background swap */
+@media (max-width: 768px) {
+    .hero {
+        background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png")
+        no-repeat center center/cover;
+    }
+
+    .hero p {
+        font-size: 4rem;
+    }
+}
+</style>
+
+
+<section class="hero">
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+        
+
+        <p>The Ocean is open to all</p>
+
+        <div>
+            <a href="#our-mission" 
+               class="btn btn-dark btn-cta enter-btn">
+               Our mission
+            </a>
+        </div>
+
     </div>
 </section>
-
-
-<!-- Meetups Section -->
-
-
-<!-- Contact Section -->
-<section id="contact" class="bg-light py-5">
+<section id="our-mission" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-5">Get In Touch</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="text-center">
-                    <i class="fas fa-envelope text-ocean fa-3x mb-3"></i>
-                    <h5>Email</h5>
-                    <p><a href="mailto:info@openocean.org" class="text-decoration-none">info@openocean.org</a></p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="text-center">
-                    <i class="fas fa-map-marker-alt text-ocean fa-3x mb-3"></i>
-                    <h5>Location</h5>
-                    <p>United Kingdom</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="text-center">
-                    <i class="fas fa-phone text-ocean fa-3x mb-3"></i>
-                    <h5>Phone</h5>
-                    <p><a href="tel:+441234567890" class="text-decoration-none">+44 (0) 123 456 7890</a></p>
-                </div>
-            </div>
-        </div>
+        <h2 class="mb-4">Our Mission</h2>
+        <p class="lead">At Open Ocean Collective, we are dedicated to championing diversity in British surfing. We believe that the ocean should be a welcoming space for everyone, regardless of background, identity, or experience level. Our mission is to create an inclusive community where all surfers can connect, learn, and thrive together. We run monthly surf trips from London to exciting British surf destinations including Devon, Cornwall, Pembrokeshire, and The Wave at Bristol, ensuring that everyone has access to world-class waves and unforgettable experiences in a supportive, welcoming environment. We'd love to </p>
     </div>
 </section>
 {% endblock %}
