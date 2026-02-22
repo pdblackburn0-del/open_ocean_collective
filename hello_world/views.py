@@ -75,3 +75,6 @@ def meetups(request):
         'user_signups': user_signups,
     }
     return render(request, 'meetups.html', context)
+
+def homepage(request):
+    return render(request, "homepage.html")
