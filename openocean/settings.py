@@ -80,6 +80,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/welcome/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
