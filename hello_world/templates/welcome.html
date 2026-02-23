@@ -6,16 +6,54 @@
 
 {% block extra_css %}
 <style>
-    .welcome-container {
-        min-height: 70vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 40px 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Estonia&family=Quintessential&family=Radley:ital@0;1&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap');
+
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Helvetica Neue', sans-serif;
     }
 
+    /* Hero section */
+    .hero {
+        background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771614467/0M6A7074_2_hw8fqx.jpg") no-repeat center center/cover;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding-top: 10px;
+    }
+
+    .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        padding: 20px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        font-family: 'Estonia', cursive;
+        font-size: 3rem;
+        margin-bottom: 40px;
+        color: whitesmoke;
+    }
+
+    /* Welcome card */
     .welcome-card {
         background: white;
         color: #333;
@@ -24,26 +62,13 @@
         max-width: 600px;
         text-align: center;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        margin: 20px auto;
     }
 
     .welcome-icon {
         font-size: 4rem;
         color: #667eea;
         margin-bottom: 30px;
-    }
-
-    .welcome-card h1 {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    .welcome-card p {
-        font-size: 1.1rem;
-        color: #666;
-        margin-bottom: 15px;
-        line-height: 1.6;
     }
 
     .user-greeting {
@@ -57,49 +82,6 @@
     .user-greeting strong {
         color: #667eea;
         font-size: 1.2rem;
-    }
-
-    .button-group {
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-        margin-top: 40px;
-        flex-wrap: wrap;
-    }
-
-    .btn-large {
-        padding: 14px 35px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .btn-primary-large {
-        background-color: #667eea;
-        color: white;
-    }
-
-    .btn-primary-large:hover {
-        background-color: #764ba2;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        text-decoration: none;
-        color: white;
-    }
-
-    .btn-outline-large {
-        border: 2px solid #667eea;
-        color: #667eea;
-        background: white;
-    }
-
-    .btn-outline-large:hover {
-        background-color: #667eea;
-        color: white;
-        transform: translateY(-2px);
-        text-decoration: none;
     }
 
     .benefits-list {
@@ -138,69 +120,93 @@
         margin-right: 10px;
     }
 
+    /* Buttons */
+    .btn-cta {
+        margin: 10px;
+        padding: 14px 40px;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        font-family: 'Radley', serif;
+        color: lightblue;
+        font-size: 1.3rem;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        color: #fff;
+    }
+
+    .enter-btn {
+        font-size: 1.5rem;
+        padding: 20px 60px;
+    }
+
+    .auth-buttons {
+        margin-top: 60px;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+        .hero {
+            background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771801431/Screenshot_2026-02-22_at_23.03.16_p0wspe.png") no-repeat center center/cover;
+        }
         .welcome-card {
             padding: 40px 25px;
-        }
-
-        .welcome-card h1 {
-            font-size: 1.8rem;
-        }
-
-        .button-group {
-            flex-direction: column;
-        }
-
-        .btn-large {
-            width: 100%;
         }
     }
 </style>
 {% endblock %}
 
 {% block content %}
-
-<section class="welcome-container">
-    <div class="welcome-card">
-        <div class="welcome-icon">
-            <i class="fas fa-wave-square"></i>
-        </div>
-
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
         <h1>Welcome to Our Surf Community! 🏄</h1>
+        <p>Your account has been created successfully!</p>
 
-        <p>Your account has been created successfully! Get ready to join an amazing community of surfers across the UK.</p>
+        <div class="welcome-card">
+            <div class="welcome-icon">
+                <i class="fas fa-wave-square"></i>
+            </div>
 
-        <!-- User Greeting -->
-        <div class="user-greeting">
-            <p class="mb-0">
-                <strong>You're logged in as: {{ user.username }}</strong>
-            </p>
-        </div>
+            <!-- User Greeting -->
+            <div class="user-greeting">
+                <p class="mb-0">
+                    <strong>You're logged in as: {{ user.username }}</strong>
+                </p>
+            </div>
 
-        <!-- Benefits -->
-        <div class="benefits-list">
-            <h3>What You Can Do Now:</h3>
-            <ul>
-                <li>Browse and sign up for monthly surf trips</li>
-                <li>Connect with our inclusive surf community</li>
-                <li>Share your stories and experiences</li>
-                <li>Access exclusive event information</li>
-                <li>Build friendships with other surfers</li>
-            </ul>
-        </div>
+            <!-- Benefits -->
+            <div class="benefits-list">
+                <h3>What You Can Do Now:</h3>
+                <ul>
+                    <li>Browse and sign up for monthly surf trips</li>
+                    <li>Connect with our inclusive surf community</li>
+                    <li>Share your stories and experiences</li>
+                    <li>Access exclusive event information</li>
+                    <li>Build friendships with other surfers</li>
+                </ul>
+            </div>
 
-        <p style="font-style: italic; color: #999;">Ready to catch some waves? Let's get started!</p>
+            <p style="font-style: italic; color: #999;">Ready to catch some waves? Let's get started!</p>
 
-        <!-- Action Buttons -->
-        <div class="button-group">
-            <a href="{% url 'hello_world:meetups' %}" class="btn-large btn-primary-large">
-                <i class="fas fa-water me-2"></i>View Surf Trips
-            </a>
-            <a href="{% url 'hello_world:index' %}" class="btn-large btn-outline-large">
-                <i class="fas fa-home me-2"></i>Back to Home
-            </a>
+            <!-- Action Buttons -->
+            <div class="auth-buttons">
+                <a href="{% url 'hello_world:meetups' %}" class="btn-cta enter-btn">
+                    <i class="fas fa-water me-2"></i>View Surf Trips
+                </a>
+                <a href="{% url 'hello_world:index' %}" class="btn-cta enter-btn">
+                    <i class="fas fa-home me-2"></i>Back to Home
+                </a>
+            </div>
         </div>
     </div>
 </section>
-
 {% endblock %}
