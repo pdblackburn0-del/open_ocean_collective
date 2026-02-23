@@ -296,3 +296,176 @@ section h2::after {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--ocean-dark);
 }
+
+/* ===== ALLAUTH FORM STYLING ===== */
+
+/* Auth Container */
+.account-page {
+    background: linear-gradient(135deg, rgba(0, 31, 63, 0.05), rgba(0, 116, 217, 0.05)),
+                url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png") no-repeat center center/cover;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Form Container */
+.account-form-container {
+    background: white;
+    border-radius: 16px;
+    padding: 50px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 116, 217, 0.15);
+}
+
+.account-form-container h1,
+.account-form-container h2 {
+    font-family: 'Radley', serif;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+.account-form-container p {
+    font-family: 'Radley', serif;
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+/* Form Styling */
+.account-form-container form {
+    font-family: 'Radley', serif;
+}
+
+.account-form-container .form-group,
+.account-form-container .fieldwrapper {
+    margin-bottom: 20px;
+}
+
+.account-form-container label {
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 1rem;
+}
+
+.account-form-container input[type="text"],
+.account-form-container input[type="email"],
+.account-form-container input[type="password"],
+.account-form-container textarea,
+.account-form-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Radley', serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.account-form-container input:focus,
+.account-form-container textarea:focus,
+.account-form-container select:focus {
+    border-color: var(--ocean-blue);
+    box-shadow: 0 0 0 0.2rem rgba(0, 116, 217, 0.25);
+    outline: none;
+}
+
+/* Form Buttons */
+.account-form-container button,
+.account-form-container input[type="submit"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Radley', serif;
+    color: white;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.account-form-container button:hover,
+.account-form-container input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Error Messages */
+.account-form-container .errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+}
+
+.account-form-container .errorlist li {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin: 5px 0;
+    font-family: 'Radley', serif;
+}
+
+.account-form-container .alert {
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-family: 'Radley', serif;
+}
+
+/* Help Text */
+.account-form-container .helptext,
+.account-form-container small {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 5px;
+    display: block;
+    font-family: 'Radley', serif;
+}
+
+/* Links */
+.account-form-container a {
+    color: var(--ocean-blue);
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Radley', serif;
+}
+
+.account-form-container a:hover {
+    text-decoration: underline;
+}
+
+/* Form Footer Links */
+.account-form-container .bottom {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.account-form-container .bottom p {
+    margin: 0;
+    color: #666;
+    font-family: 'Radley', serif;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .account-form-container {
+        padding: 30px 20px;
+    }
+
+    .account-form-container h1,
+    .account-form-container h2 {
+        font-size: 1.5rem;
+    }
+}
