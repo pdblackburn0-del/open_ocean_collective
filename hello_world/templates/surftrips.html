@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block title %}Surf Trips - Open Ocean Collective{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+    .surf-trips-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .surf-trips-hero h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .surf-trips-hero p {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+
+    .trip-card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .trip-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .trip-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 4rem;
+    }
+
+    .trip-content {
+        padding: 30px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .trip-month {
+        font-size: 0.9rem;
+        color: #667eea;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+
+    .trip-location {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .trip-details {
+        color: #666;
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        flex-grow: 1;
+    }
+
+    .trip-details p {
+        margin-bottom: 8px;
+    }
+
+    .trip-details strong {
+        color: #333;
+    }
+
+    .signup-btn {
+        margin-top: auto;
+    }
+
+    .auth-message {
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .trips-section {
+        padding: 80px 20px;
+        background-color: #f8f9fa;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .section-title p {
+        font-size: 1.1rem;
+        color: #666;
+    }
+
+    @media (max-width: 768px) {
+        .surf-trips-hero h1 {
+            font-size: 2rem;
+        }
+
+        .trip-image {
+            height: 200px;
+            font-size: 3rem;
+        }
+
+        .trip-location {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="surf-trips-hero">
+    <h1>Monthly Surf Trips</h1>
+    <p>Join our community for unforgettable waves across the UK's best surf destinations</p>
+</section>
+
+<!-- Trips Section -->
+<section class="trips-section">
+    <div class="container">
+        <!-- Auth Message -->
+        {% if not user.is_authenticated %}
+        <div class="auth-message alert alert-info">
+            <p class="mb-0">
+                <strong>Want to join a surf trip?</strong> 
+                <a href="{% url 'account_login' %}">Sign in</a> or 
+                <a href="{% url 'account_signup' %}">create an account</a> to register for our monthly trips!
+            </p>
+        </div>
+        {% endif %}
+
+        <!-- Section Title -->
+        <div class="section-title">
+            <h2>Discover Our Trips</h2>
+            <p>Each month, we explore new breaks and build our community</p>
+        </div>
+
+        <!-- Trips Grid -->
+        <div class="row g-4">
+
+            <!-- Trip 1: Cornwall -->
+            <div class="col-md-6 col-lg-3">
+                <div class="trip-card">
+                    <div class="trip-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="trip-content">
+                        <div class="trip-month">January</div>
+                        <h3 class="trip-location">Cornwall</h3>
+                        <div class="trip-details">
+                            <p><strong>Date:</strong> January 18-20, 2026</p>
+                            <p><strong>Destination:</strong> Polzeath & Constantine Bay</p>
+                            <p><strong>Difficulty:</strong> Beginner to Intermediate</p>
+                            <p><strong>Price:</strong> £150 per person</p>
+                            <p>Experience the legendary breaks of North Cornwall with our experienced guides. Perfect for all levels!</p>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <form method="POST" class="signup-btn">
+                            {% csrf_token %}
+                            <input type="hidden" name="trip" value="cornwall-jan">
+                            <button type="submit" class="btn btn-primary w-100">Sign Up for Trip</button>
+                        </form>
+                        {% else %}
+                        <button class="btn btn-outline-primary w-100 signup-btn" disabled>Sign In to Register</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trip 2: Devon -->
+            <div class="col-md-6 col-lg-3">
+                <div class="trip-card">
+                    <div class="trip-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="trip-content">
+                        <div class="trip-month">February</div>
+                        <h3 class="trip-location">Devon</h3>
+                        <div class="trip-details">
+                            <p><strong>Date:</strong> February 15-17, 2026</p>
+                            <p><strong>Destination:</strong> Croyde & Putsborough</p>
+                            <p><strong>Difficulty:</strong> Intermediate</p>
+                            <p><strong>Price:</strong> £145 per person</p>
+                            <p>Explore Devon's stunning coastline with consistent waves and beautiful beaches. Great for progression!</p>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <form method="POST" class="signup-btn">
+                            {% csrf_token %}
+                            <input type="hidden" name="trip" value="devon-feb">
+                            <button type="submit" class="btn btn-primary w-100">Sign Up for Trip</button>
+                        </form>
+                        {% else %}
+                        <button class="btn btn-outline-primary w-100 signup-btn" disabled>Sign In to Register</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trip 3: Pembrokeshire -->
+            <div class="col-md-6 col-lg-3">
+                <div class="trip-card">
+                    <div class="trip-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="trip-content">
+                        <div class="trip-month">March</div>
+                        <h3 class="trip-location">Pembrokeshire</h3>
+                        <div class="trip-details">
+                            <p><strong>Date:</strong> March 22-24, 2026</p>
+                            <p><strong>Destination:</strong> Newgale & Tenby</p>
+                            <p><strong>Difficulty:</strong> All Levels</p>
+                            <p><strong>Price:</strong> £160 per person</p>
+                            <p>Discover Wales' hidden gem with pristine waves and stunning coastal scenery. Perfect for beginners!</p>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <form method="POST" class="signup-btn">
+                            {% csrf_token %}
+                            <input type="hidden" name="trip" value="pembrokeshire-mar">
+                            <button type="submit" class="btn btn-primary w-100">Sign Up for Trip</button>
+                        </form>
+                        {% else %}
+                        <button class="btn btn-outline-primary w-100 signup-btn" disabled>Sign In to Register</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trip 4: The Wave Bristol -->
+            <div class="col-md-6 col-lg-3">
+                <div class="trip-card">
+                    <div class="trip-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="trip-content">
+                        <div class="trip-month">April</div>
+                        <h3 class="trip-location">The Wave Bristol</h3>
+                        <div class="trip-details">
+                            <p><strong>Date:</strong> April 19-21, 2026</p>
+                            <p><strong>Destination:</strong> Artificial Wave & Beach Day</p>
+                            <p><strong>Difficulty:</strong> All Levels</p>
+                            <p><strong>Price:</strong> £130 per person</p>
+                            <p>Experience the UK's only inland artificial wave! Perfect for everyone to level up their skills.</p>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <form method="POST" class="signup-btn">
+                            {% csrf_token %}
+                            <input type="hidden" name="trip" value="wave-bristol-apr">
+                            <button type="submit" class="btn btn-primary w-100">Sign Up for Trip</button>
+                        </form>
+                        {% else %}
+                        <button class="btn btn-outline-primary w-100 signup-btn" disabled>Sign In to Register</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - Open Ocean Collective{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+    .welcome-container {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 20px;
+    }
+
+    .welcome-card {
+        background: white;
+        color: #333;
+        border-radius: 16px;
+        padding: 60px 40px;
+        max-width: 600px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .welcome-icon {
+        font-size: 4rem;
+        color: #667eea;
+        margin-bottom: 30px;
+    }
+
+    .welcome-card h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .welcome-card p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    .user-greeting {
+        background: #f0f4ff;
+        padding: 20px;
+        border-radius: 12px;
+        margin: 30px 0;
+        border-left: 4px solid #667eea;
+    }
+
+    .user-greeting strong {
+        color: #667eea;
+        font-size: 1.2rem;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+
+    .btn-large {
+        padding: 14px 35px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary-large {
+        background-color: #667eea;
+        color: white;
+    }
+
+    .btn-primary-large:hover {
+        background-color: #764ba2;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-outline-large {
+        border: 2px solid #667eea;
+        color: #667eea;
+        background: white;
+    }
+
+    .btn-outline-large:hover {
+        background-color: #667eea;
+        color: white;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    .benefits-list {
+        text-align: left;
+        margin: 40px 0;
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 12px;
+    }
+
+    .benefits-list h3 {
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .benefits-list ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .benefits-list li {
+        padding: 10px 0;
+        color: #666;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .benefits-list li:last-child {
+        border-bottom: none;
+    }
+
+    .benefits-list li:before {
+        content: "✓ ";
+        color: #667eea;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .welcome-card {
+            padding: 40px 25px;
+        }
+
+        .welcome-card h1 {
+            font-size: 1.8rem;
+        }
+
+        .button-group {
+            flex-direction: column;
+        }
+
+        .btn-large {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="welcome-container">
+    <div class="welcome-card">
+        <div class="welcome-icon">
+            <i class="fas fa-wave-square"></i>
+        </div>
+
+        <h1>Welcome to Our Surf Community! 🏄</h1>
+
+        <p>Your account has been created successfully! Get ready to join an amazing community of surfers across the UK.</p>
+
+        <!-- User Greeting -->
+        <div class="user-greeting">
+            <p class="mb-0">
+                <strong>You're logged in as: {{ user.username }}</strong>
+            </p>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits-list">
+            <h3>What You Can Do Now:</h3>
+            <ul>
+                <li>Browse and sign up for monthly surf trips</li>
+                <li>Connect with our inclusive surf community</li>
+                <li>Share your stories and experiences</li>
+                <li>Access exclusive event information</li>
+                <li>Build friendships with other surfers</li>
+            </ul>
+        </div>
+
+        <p style="font-style: italic; color: #999;">Ready to catch some waves? Let's get started!</p>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <a href="{% url 'hello_world:meetups' %}" class="btn-large btn-primary-large">
+                <i class="fas fa-water me-2"></i>View Surf Trips
+            </a>
+            <a href="{% url 'hello_world:index' %}" class="btn-large btn-outline-large">
+                <i class="fas fa-home me-2"></i>Back to Home
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

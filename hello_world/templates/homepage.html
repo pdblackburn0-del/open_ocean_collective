@@ -65,7 +65,7 @@
 }
 .lead {
     font-family: 'Radley', serif;
-    color: grey;
+    color: #333333;
 }
 .py-5 {
     background-color: antiquewhite;
@@ -103,8 +103,31 @@
 </section>
 <section id="our-mission" class="py-5">
     <div class="container">
-        <h2 class="mb-4">Our Mission</h2>
-        <p class="lead">At Open Ocean Collective, we are dedicated to championing diversity in British surfing. We believe that the ocean should be a welcoming space for everyone, regardless of background, identity, or experience level. Our mission is to create an inclusive community where all surfers can connect, learn, and thrive together. We run monthly surf trips from London to exciting British surf destinations including Devon, Cornwall, Pembrokeshire, and The Wave at Bristol, ensuring that everyone has access to world-class waves and unforgettable experiences in a supportive, welcoming environment. We'd love to </p>
+        <div class="row align-items-center">
+            
+            <!-- Text -->
+            <div class="col-md-5">
+                <h2 class="mb-4">Our Mission</h2>
+                <p class="lead">
+                At Open Ocean Collective, we are dedicated to championing diversity in British surfing. We believe that the ocean should be a welcoming space for everyone, regardless of background, identity, or experience level. Our mission is to provide inclusive opportunities for all surfers and aspiring surfers and change the space of British surfing. We run monthly surf trips from London to exciting British surf destinations including Devon, Cornwall, Pembrokeshire, and The Wave at Bristol, ensuring that everyone has access to world‑class waves and unforgettable experiences in a supportive, welcoming environment. We'd love to welcome you to our next surf trip so please 
+                <a href="{% url 'account_signup' %}" class="fw-bold text‑decoration‑underline">
+                    sign up
+                </a> 
+                to get involved!
+            </p>
+        </div>
+
+
+            <!-- Image -->
+            <div class="col-md-7 text-center">
+                <img 
+                    src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771421138/175b01cf-39d8-4018-8041-d2e23fa33386_xqkkj3.png" 
+                    alt="Inclusive British surfing community" 
+                    class="img-fluid rounded shadow"
+                >
+            </div>
+
+        </div>
     </div>
 </section>
 {% endblock %}

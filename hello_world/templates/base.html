@@ -42,57 +42,72 @@
         </button>
 
         <!-- Nav Links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
+         <div class="collapse navbar-collapse" id="navbarNav">
+   <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#stories">Stories</a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'hello_world:homepage' %}">
+            Home
+        </a>
+    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#our-mission">
+            Our Mission
+        </a>
+    </li>
 
-                {% if user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'hello_world:meetups' %}">
+            Surf Trips
+        </a>
+    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'hello_world:meetups' %}">
-                            Meetups
-                        </a>
-                    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#stories">
+            Stories to Inspire
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#stories">
+            Buy Merch
+        </a>
+    </li>
 
-                    <li class="nav-item ms-lg-3">
-                        <span class="nav-link text-dark">
-                            Logged in as <strong>{{ user.username }}</strong>
-                        </span>
-                    </li>
+    {% if user.is_authenticated %}
 
-                    <li class="nav-item ms-lg-2">
-                        <a class="btn btn-danger px-3"
-                           href="{% url 'account_logout' %}">
-                            Log Out
-                        </a>
-                    </li>
+        <li class="nav-item ms-lg-3">
+            <span class="nav-link text-dark">
+                Logged in as <strong>{{ user.username }}</strong>
+            </span>
+        </li>
 
-                {% else %}
+        <li class="nav-item ms-lg-2">
+            <a class="btn btn-danger px-3"
+               href="{% url 'account_logout' %}">
+                Log Out
+            </a>
+        </li>
 
-                    <li class="nav-item ms-lg-3">
-                        <a class="btn btn-outline-dark px-3"
-                           href="{% url 'account_login' %}">
-                            Log In
-                        </a>
-                    </li>
+    {% else %}
 
-                    <li class="nav-item ms-lg-2">
-                        <a class="btn btn-primary px-3 text-white"
-                           href="{% url 'account_signup' %}">
-                            Sign Up
-                        </a>
-                    </li>
+        <li class="nav-item ms-lg-3">
+            <a class="btn btn-outline-dark px-3"
+               href="{% url 'account_login' %}">
+                Log In
+            </a>
+        </li>
 
-                {% endif %}
+        <li class="nav-item ms-lg-2">
+            <a class="btn btn-primary px-3 text-white"
+               href="{% url 'account_signup' %}">
+                Sign Up
+            </a>
+        </li>
 
-            </ul>
+    {% endif %}
+
+</ul>
         </div>
     </nav>
 </header>

@@ -33,8 +33,8 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save(request)
-            messages.success(request, 'Account created successfully! Please check your email to verify your account.')
-            return redirect('hello_world:index')
+            messages.success(request, 'Account created successfully! Welcome to Open Ocean Collective!')
+            return redirect('hello_world:welcome')
         else:
             # Pass form with errors to template
             return render(request, 'signup.html', {'form': form})
@@ -50,31 +50,14 @@ def create_story(request):
     return render(request, 'create_story.html')
 
 
-@login_required
 def meetups(request):
-    """Display available meetups and handle signup"""
-    if request.method == 'POST':
-        meetup_id = request.POST.get('meetup_id')
-        try:
-            meetup = Meetup.objects.get(id=meetup_id)
-            # Check if already signed up
-            if MeetupSignup.objects.filter(user=request.user, meetup=meetup).exists():
-                messages.warning(request, f'You are already signed up for {meetup.get_location_display()}!')
-            else:
-                MeetupSignup.objects.create(user=request.user, meetup=meetup)
-                messages.success(request, f'Successfully signed up for {meetup.get_location_display()}!')
-        except Meetup.DoesNotExist:
-            messages.error(request, 'Meetup not found.')
-        return redirect('hello_world:meetups')
-    
-    meetups_list = Meetup.objects.all()
-    user_signups = MeetupSignup.objects.filter(user=request.user).values_list('meetup_id', flat=True)
-    
-    context = {
-        'meetups': meetups_list,
-        'user_signups': user_signups,
-    }
-    return render(request, 'meetups.html', context)
+    """Display available surf trips"""
+    return render(request, 'surftrips.html')
 
 def homepage(request):
     return render(request, "homepage.html")
+
+
+def welcome(request):
+    """Welcome page for newly signed up users"""
+    return render(request, 'welcome.html')
