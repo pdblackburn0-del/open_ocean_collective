@@ -20,16 +20,16 @@
 <body class="d-flex flex-column min-vh-100">
 
 <!-- ================= NAVBAR ================= -->
-<header class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom" style="min-height: 120px;">
-    <nav class="container-fluid px-4" style="min-height: 120px; ">
+<header class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom" style="min-height: 70px;">
+    <nav class="container-fluid px-4" style="min-height: 70px; ">
         
         <!-- Logo -->
         <a class="navbar-brand fw-bold d-flex align-items-center"
            href="{% url 'hello_world:index' %}"
            style="height: 100px;">
-            <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771624774/copy_of_interlocked_ooc_ocean_logo_uar5dt_a0481e.png"
+            <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771788162/01ooc-logo_rschle.png"
                  alt="Open Ocean Collective"
-                 height="100"
+                 height="170"
                  class="me-3">
         </a>
 
@@ -52,7 +52,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#our-mission">
+        <a class="nav-link" href="{% url 'hello_world:homepage' %}#our-mission">
             Our Mission
         </a>
     </li>
@@ -64,7 +64,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#stories">
+        <a class="nav-link" href="{% url 'hello_world:stories' %}">
             Stories to Inspire
         </a>
     </li>

@@ -61,3 +61,8 @@ def homepage(request):
 def welcome(request):
     """Welcome page for newly signed up users"""
     return render(request, 'welcome.html')
+
+
+def stories(request):
+    """Display community stories"""
+    return render(request, 'stories.html')

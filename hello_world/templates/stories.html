@@ -1,0 +1,430 @@
+{% extends "base.html" %}
+
+{% block title %}Stories to Inspire - Open Ocean Collective{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Radley:ital@0;1&display=swap');
+
+.stories-hero {
+    background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png") no-repeat center center/cover;
+    height: 60vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.stories-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.stories-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.stories-hero h1 {
+    font-family: 'Estonia', cursive;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: whitesmoke;
+}
+
+.stories-hero p {
+    font-family: 'Radley', serif;
+    font-size: 1.3rem;
+    color: whitesmoke;
+}
+
+.stories-section {
+    padding: 80px 20px;
+    background-color: antiquewhite;
+}
+
+.story-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.story-image {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.story-content {
+    padding: 40px;
+}
+
+.story-title {
+    font-family: 'Radley', serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.story-meta {
+    color: #999;
+    font-family: 'Radley', serif;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.story-text {
+    font-family: 'Radley', serif;
+    color: #555;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.comments-section {
+    margin-top: 40px;
+    border-top: 2px solid #e0e0e0;
+    padding-top: 30px;
+}
+
+.comments-title {
+    font-family: 'Radley', serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.comment {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.comment-author {
+    font-family: 'Radley', serif;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.comment-date {
+    font-family: 'Radley', serif;
+    color: #999;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.comment-text {
+    font-family: 'Radley', serif;
+    color: #555;
+    line-height: 1.6;
+}
+
+.comment-form {
+    background: #f0f4ff;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+
+.comment-form h4 {
+    font-family: 'Radley', serif;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Radley', serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-submit-comment {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit-comment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.auth-prompt {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.auth-prompt p {
+    font-family: 'Radley', serif;
+    margin: 0;
+    color: #333;
+}
+
+.auth-prompt a {
+    color: #667eea;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-prompt a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .stories-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .story-title {
+        font-size: 1.3rem;
+    }
+
+    .story-content {
+        padding: 25px;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="stories-hero">
+    <div class="stories-overlay"></div>
+    <div class="stories-hero-content">
+        <h1>Stories to Inspire</h1>
+        <p>Real experiences from our surf community</p>
+    </div>
+</section>
+
+<!-- Stories Section -->
+<section class="stories-section">
+    <div class="container">
+        <!-- Story 1 -->
+        <div class="story-card">
+            <div class="story-image">
+                <i class="fas fa-person-hiking"></i>
+            </div>
+            <div class="story-content">
+                <h2 class="story-title">Finding My Voice in the Ocean</h2>
+                <p class="story-meta">By Sarah Ahmed • February 15, 2026</p>
+                
+                <div class="story-text">
+                    <p>Three years ago, I never thought I'd be a surfer. Coming from an underrepresented background in British surfing, I felt like I didn't belong in the water. Then I discovered Open Ocean Collective, and everything changed. The welcoming community, diverse faces in the lineup, and supportive instructors gave me the confidence to pursue my passion. Now, I'm not just surfing—I'm thriving. Every wave feels like a victory, not just for me, but for everyone who told me this wasn't "my space." Open Ocean Collective didn't just teach me to surf; they showed me that the ocean truly is for everyone.</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h4 class="comments-title">
+                        <i class="fas fa-comments me-2"></i>Comments
+                    </h4>
+                    
+                    <!-- Sample Comments -->
+                    <div class="comment">
+                        <div class="comment-author">James Wilson</div>
+                        <div class="comment-date">February 16, 2026</div>
+                        <div class="comment-text">What an inspiring story! Your journey resonates with so many of us. Keep shredding! 🌊</div>
+                    </div>
+
+                    <div class="comment">
+                        <div class="comment-author">Maya Patel</div>
+                        <div class="comment-date">February 17, 2026</div>
+                        <div class="comment-text">This is exactly what I needed to read today. Thank you for sharing your story!</div>
+                    </div>
+
+                    <!-- Comment Form for Authenticated Users -->
+                    {% if user.is_authenticated %}
+                    <div class="comment-form">
+                        <h4>Leave a Comment</h4>
+                        <form method="POST" action="#">
+                            {% csrf_token %}
+                            <input type="hidden" name="story_id" value="1">
+                            
+                            <div class="form-group">
+                                <label class="form-label">Your Comment</label>
+                                <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit-comment">Post Comment</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="auth-prompt">
+                        <p><a href="{% url 'account_login' %}">Sign in</a> or <a href="{% url 'account_signup' %}">create an account</a> to comment on stories</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 2 -->
+        <div class="story-card">
+            <div class="story-image">
+                <i class="fas fa-umbrella-beach"></i>
+            </div>
+            <div class="story-content">
+                <h2 class="story-title">From Landlocked to Wave Rider</h2>
+                <p class="story-meta">By Marcus Chen • February 10, 2026</p>
+                
+                <div class="story-text">
+                    <p>Growing up in the Midlands, I never dreamed I'd be a surfer. Surfing seemed like something that happened in far-off places, not for people like me. When Open Ocean Collective organized a trip to Devon, I decided to give it a shot. I was terrified. I fell off my board more times than I can count, but the community never made me feel bad about it. They cheered me on, gave me tips, and made me feel like I belonged. Now, monthly trips are my therapy. Being on the water, surrounded by people who celebrate diversity as much as great waves, has transformed my life. I've found not just a hobby, but a family.</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h4 class="comments-title">
+                        <i class="fas fa-comments me-2"></i>Comments
+                    </h4>
+                    
+                    <!-- Sample Comments -->
+                    <div class="comment">
+                        <div class="comment-author">Emma Thompson</div>
+                        <div class="comment-date">February 11, 2026</div>
+                        <div class="comment-text">Love this! The monthly trips have changed my life too. Welcome to the fam! 🌊</div>
+                    </div>
+
+                    <!-- Comment Form for Authenticated Users -->
+                    {% if user.is_authenticated %}
+                    <div class="comment-form">
+                        <h4>Leave a Comment</h4>
+                        <form method="POST" action="#">
+                            {% csrf_token %}
+                            <input type="hidden" name="story_id" value="2">
+                            
+                            <div class="form-group">
+                                <label class="form-label">Your Comment</label>
+                                <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit-comment">Post Comment</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="auth-prompt">
+                        <p><a href="{% url 'account_login' %}">Sign in</a> or <a href="{% url 'account_signup' %}">create an account</a> to comment on stories</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 3 -->
+        <div class="story-card">
+            <div class="story-image">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="story-content">
+                <h2 class="story-title">Breaking Barriers, One Wave at a Time</h2>
+                <p class="story-meta">By Priya Desai • February 5, 2026</p>
+                
+                <div class="story-text">
+                    <p>As a woman of color navigating the British surf scene, I faced more than just challenging waters. There were sidelong glances, assumptions, and times I felt invisible in the lineup. Open Ocean Collective changed everything. For the first time, I saw people who looked like me out there, breaking the stereotype. I found mentors, made lifelong friends, and most importantly, I found my voice. The ocean doesn't care about your background—it tests your courage, your determination, and your spirit. And Open Ocean Collective made sure I knew I deserved to be there. If you've ever felt like the ocean wasn't "for you," I'm here to tell you: it absolutely is. Come join us. 🌊</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h4 class="comments-title">
+                        <i class="fas fa-comments me-2"></i>Comments
+                    </h4>
+                    
+                    <!-- Sample Comments -->
+                    <div class="comment">
+                        <div class="comment-author">Zoe Miller</div>
+                        <div class="comment-date">February 6, 2026</div>
+                        <div class="comment-text">Your story is so powerful. Thank you for paving the way for the rest of us! 💪</div>
+                    </div>
+
+                    <div class="comment">
+                        <div class="comment-author">Kai Rogers</div>
+                        <div class="comment-date">February 7, 2026</div>
+                        <div class="comment-text">Standing ovation! This is what diversity in surfing should look like!</div>
+                    </div>
+
+                    <!-- Comment Form for Authenticated Users -->
+                    {% if user.is_authenticated %}
+                    <div class="comment-form">
+                        <h4>Leave a Comment</h4>
+                        <form method="POST" action="#">
+                            {% csrf_token %}
+                            <input type="hidden" name="story_id" value="3">
+                            
+                            <div class="form-group">
+                                <label class="form-label">Your Comment</label>
+                                <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit-comment">Post Comment</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="auth-prompt">
+                        <p><a href="{% url 'account_login' %}">Sign in</a> or <a href="{% url 'account_signup' %}">create an account</a> to comment on stories</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
