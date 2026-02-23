@@ -68,11 +68,7 @@
             Stories to Inspire
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#stories">
-            Buy Merch
-        </a>
-    </li>
+
 
     {% if user.is_authenticated %}
 
@@ -119,60 +115,74 @@
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-dark text-light mt-5 py-5">
-    <div class="container-fluid">
-        <div class="row mb-4">
-
-            <div class="col-md-4 mb-4 mb-md-0">
-                <h5 class="fw-bold mb-3">
-                    <i class="fas fa-water me-2"></i>Open Ocean Collective
-                </h5>
-                <p class="text-secondary">
-                    Encouraging diversity in British Surfing.
-                    We believe the ocean is for everyone.
-                </p>
-            </div>
-
-            <div class="col-md-4 mb-4 mb-md-0">
-                <h5 class="fw-bold mb-3">Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="{% url 'hello_world:index' %}" class="text-secondary text-decoration-none">Home</a></li>
-                    <li><a href="#about" class="text-secondary text-decoration-none">About Us</a></li>
-                    <li><a href="#mission" class="text-secondary text-decoration-none">Our Mission</a></li>
-                    <li><a href="#contact" class="text-secondary text-decoration-none">Get In Touch</a></li>
-                </ul>
-            </div>
-
-            <div class="col-md-4">
-                <h5 class="fw-bold mb-3">Follow Us</h5>
-                <div class="d-flex gap-3">
-                    <a href="#" class="text-secondary"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-secondary"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="#" class="text-secondary"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-secondary"><i class="fab fa-youtube fa-lg"></i></a>
-                </div>
-            </div>
-
+<footer class="footer bg-dark text-light py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        
+        <!-- Copyright -->
+        <div class="footer-copy small mb-2 mb-md-0">
+            &copy; 2026 Open Ocean Collective
         </div>
 
-        <hr class="bg-secondary">
+        <!-- Contact Info -->
+        <div class="footer-contact small mb-2 mb-md-0">
+            <a href="tel:+441234567890">+44 123 456 7890</a> |
+            <a href="mailto:info@openoceancollective.com">info@openoceancollective.com</a>
+        </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <p class="text-secondary small mb-0">
-                    &copy; 2026 Open Ocean Collective. All rights reserved.
-                </p>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <p class="text-secondary small mb-0">
-                    <a href="#" class="text-secondary text-decoration-none">Privacy Policy</a> |
-                    <a href="#" class="text-secondary text-decoration-none">Terms of Service</a>
-                </p>
-            </div>
+        <!-- Social Links -->
+        <div class="footer-social d-flex gap-3">
+            <a href="#"><i class="fab fa-facebook-f fa-lg"></i></a>
+            <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
         </div>
 
     </div>
 </footer>
+
+<style>
+/* ================= FOOTER STYLING ================= */
+.footer {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #0b0c10; /* deep dark ocean vibe */
+    color: #dcdcdc;
+    font-size: 2rem;
+}
+
+.footer-copy, .footer-contact {
+    font-family: 'Estonia', cursive;
+    color: #dcdcdc;
+}
+
+.footer-contact a {
+    color: #dcdcdc;
+    text-decoration: none;
+    margin: 0 0.25rem;
+    transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+    color: lightblue;
+}
+
+.footer-social a {
+    color: #dcdcdc;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: lightblue;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        text-align: center;
+    }
+    .footer-contact, .footer-copy {
+        margin-bottom: 0.5rem;
+    }
+}
+</style>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
