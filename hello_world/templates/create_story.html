@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+
+{% block title %}Share Your Story - Open Ocean Collective{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Radley:ital@0;1&display=swap');
+
+.create-story-hero {
+    background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png") no-repeat center center/cover;
+    height: 40vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.create-story-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.create-story-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.create-story-hero h1 {
+    font-family: 'Estonia', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    color: whitesmoke;
+}
+
+.create-story-hero p {
+    font-family: 'Radley', serif;
+    font-size: 1.1rem;
+    color: whitesmoke;
+}
+
+.create-story-section {
+    padding: 60px 20px;
+    background-color: antiquewhite;
+    min-height: calc(100vh - 40vh);
+}
+
+.story-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-intro {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.form-intro h2 {
+    font-family: 'Radley', serif;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.form-intro p {
+    font-family: 'Radley', serif;
+    color: #666;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.form-group .form-text {
+    font-family: 'Radley', serif;
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Radley', serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 150px;
+    font-family: 'Radley', serif;
+}
+
+.form-errors {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    color: #721c24;
+}
+
+.form-errors ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.form-errors li {
+    font-family: 'Radley', serif;
+    font-size: 0.9rem;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-cancel {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-2px);
+}
+
+.character-count {
+    font-family: 'Radley', serif;
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+.success-message {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-family: 'Radley', serif;
+}
+
+@media (max-width: 768px) {
+    .create-story-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .story-form-container {
+        padding: 20px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="create-story-hero">
+    <div class="create-story-overlay"></div>
+    <div class="create-story-hero-content">
+        <h1>Share Your Story</h1>
+        <p>Inspire our community with your surf journey</p>
+    </div>
+</section>
+
+<!-- Form Section -->
+<section class="create-story-section">
+    <div class="story-form-container">
+        <div class="form-intro">
+            <h2>Tell Us Your Journey</h2>
+            <p>Your story matters! Share your experience with surfing, how it's changed your life, and how Open Ocean Collective has been part of your journey. Your words inspire others and help build our community.</p>
+        </div>
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="success-message">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Title Field -->
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}">Story Title *</label>
+                {% if form.title.errors %}
+                    <div class="form-errors">
+                        {{ form.title.errors }}
+                    </div>
+                {% endif %}
+                {{ form.title }}
+                <div class="form-text">Give your story a compelling title (at least 5 characters)</div>
+            </div>
+
+            <!-- Content Field -->
+            <div class="form-group">
+                <label for="{{ form.content.id_for_label }}">Your Story *</label>
+                {% if form.content.errors %}
+                    <div class="form-errors">
+                        {{ form.content.errors }}
+                    </div>
+                {% endif %}
+                {{ form.content }}
+                <div class="character-count"><span id="char-count">0</span> characters</div>
+                <div class="form-text">Share your inspiring journey (at least 50 characters). What's your story?</div>
+            </div>
+
+            <!-- Image URL Field -->
+            <div class="form-group">
+                <label for="{{ form.image_url.id_for_label }}">Story Image URL (Optional)</label>
+                {% if form.image_url.errors %}
+                    <div class="form-errors">
+                        {{ form.image_url.errors }}
+                    </div>
+                {% endif %}
+                {{ form.image_url }}
+                <div class="form-text">Provide a URL to an image that represents your story (e.g., a photo from Cloudinary)</div>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-submit">
+                    <i class="fas fa-check me-2"></i>Publish Story
+                </button>
+                <a href="{% url 'hello_world:stories' %}" class="btn btn-cancel">
+                    <i class="fas fa-times me-2"></i>Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+// Character counter for story content
+const contentTextarea = document.getElementById('id_content');
+const charCount = document.getElementById('char-count');
+
+if (contentTextarea) {
+    contentTextarea.addEventListener('input', function() {
+        charCount.textContent = this.value.length;
+    });
+    // Initialize count on page load
+    charCount.textContent = contentTextarea.value.length;
+}
+</script>
+
+{% endblock %}

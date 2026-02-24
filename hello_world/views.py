@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 from allauth.account.forms import SignupForm
 from .models import Meetup, MeetupSignup, Story, Comment
+from .forms import StoryForm
 
 
 def index(request):
@@ -47,7 +48,23 @@ def signup(request):
 # Step 5: Member-only page
 @login_required
 def create_story(request):
-    return render(request, 'create_story.html')
+    """Allow authenticated users to create and share their story"""
+    if request.method == 'POST':
+        form = StoryForm(request.POST)
+        if form.is_valid():
+            story = form.save(commit=False)
+            story.author = request.user.get_full_name() or request.user.username
+            story.author_user = request.user
+            story.save()
+            messages.success(request, 'Your story has been published! Thank you for sharing your journey with our community.')
+            return redirect('hello_world:stories')
+        else:
+            # Pass form with errors back to template
+            return render(request, 'create_story.html', {'form': form})
+    else:
+        form = StoryForm()
+    
+    return render(request, 'create_story.html', {'form': form})
 
 
 def meetups(request):

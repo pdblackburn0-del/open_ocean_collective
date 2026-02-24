@@ -257,6 +257,20 @@ textarea.form-control {
     </div>
 </section>
 
+<!-- CTA Section for Creating Stories -->
+<section style="background-color: #f8f9fa; padding: 30px 20px; border-bottom: 2px solid #e0e0e0;">
+    <div class="container" style="text-align: center;">
+        {% if user.is_authenticated %}
+        <p style="font-family: 'Radley', serif; color: #333; margin-bottom: 15px;">Have your own inspiring story to share?</p>
+        <a href="{% url 'hello_world:create_story' %}" class="btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-family: 'Radley', serif; font-weight: 600; display: inline-block; transition: all 0.3s ease;">
+            <i class="fas fa-pen me-2"></i>Share Your Story
+        </a>
+        {% else %}
+        <p style="font-family: 'Radley', serif; color: #666; margin-bottom: 15px;"><a href="{% url 'account_login' %}" style="color: #667eea; text-decoration: none; font-weight: 600;">Sign in</a> to share your own inspiring story with our community!</p>
+        {% endif %}
+    </div>
+</section>
+
 <!-- Stories Section -->
 <section class="stories-section">
     <div class="container">
