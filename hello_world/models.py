@@ -48,6 +48,37 @@ class MeetupSignup(models.Model):
 
     def __str__(self):
         return f"{self.user.username} signed up for {self.meetup.get_location_display()}"
+
+
+class Story(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=100)
+    author_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='stories')
+    content = models.TextField()
+    image_url = models.URLField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title
+
+
+class Comment(models.Model):
+    story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created_at']
+
+    def __str__(self):
+        return f"Comment by {self.user.username} on {self.story.title}"
+
+
 # Automatically create Profile when a new User is created
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

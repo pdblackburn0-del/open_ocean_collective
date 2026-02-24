@@ -260,20 +260,27 @@ textarea.form-control {
 <!-- Stories Section -->
 <section class="stories-section">
     <div class="container">
-        <!-- Story 1 -->
+        {% for story in stories %}
+        <!-- Story Card -->
         <div class="story-card">
             <div class="story-image">
-                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771818012/piri_amgpqh.png" 
-                     alt="Story 1 Image" 
+                {% if story.image_url %}
+                <img src="{{ story.image_url }}" 
+                     alt="{{ story.title }}" 
                      class="story-img" 
                      style="max-height: 300px; width: auto;">
+                {% else %}
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                    📖
+                </div>
+                {% endif %}
             </div>
             <div class="story-content">
-                <h2 class="story-title">Finding My Voice in the Ocean</h2>
-                <p class="story-meta">By Sarah Ahmed • February 15, 2026</p>
+                <h2 class="story-title">{{ story.title }}</h2>
+                <p class="story-meta">By {{ story.author }} • {{ story.created_at|date:"F d, Y" }}</p>
                 
                 <div class="story-text">
-                    <p>Three years ago, I never thought I'd be a surfer. Coming from an underrepresented background in British surfing, I felt like I didn't belong in the water. Then I discovered Open Ocean Collective, and everything changed. The welcoming community, diverse faces in the lineup, and supportive instructors gave me the confidence to pursue my passion. Now, I'm not just surfing—I'm thriving. Every wave feels like a victory, not just for me, but for everyone who told me this wasn't "my space." Open Ocean Collective didn't just teach me to surf; they showed me that the ocean truly is for everyone.</p>
+                    <p>{{ story.content }}</p>
                 </div>
 
                 <!-- Comments Section -->
@@ -282,24 +289,24 @@ textarea.form-control {
                         <i class="fas fa-comments me-2"></i>Comments
                     </h4>
 
-                    <div class="comment">
-                        <div class="comment-author">James Wilson</div>
-                        <div class="comment-date">February 16, 2026</div>
-                        <div class="comment-text">What an inspiring story! Your journey resonates with so many of us. Keep shredding! 🌊</div>
-                    </div>
-
-                    <div class="comment">
-                        <div class="comment-author">Maya Patel</div>
-                        <div class="comment-date">February 17, 2026</div>
-                        <div class="comment-text">This is exactly what I needed to read today. Thank you for sharing your story!</div>
-                    </div>
+                    {% if story.comments.all %}
+                        {% for comment in story.comments.all %}
+                        <div class="comment">
+                            <div class="comment-author">{{ comment.user.username }}</div>
+                            <div class="comment-date">{{ comment.created_at|date:"F d, Y" }}</div>
+                            <div class="comment-text">{{ comment.content }}</div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p style="color: #999; font-family: 'Radley', serif; margin-bottom: 20px;">No comments yet. Be the first to share your thoughts!</p>
+                    {% endif %}
 
                     {% if user.is_authenticated %}
                     <div class="comment-form">
                         <h4>Leave a Comment</h4>
-                        <form method="POST" action="#">
+                        <form method="POST" action="{% url 'hello_world:stories' %}">
                             {% csrf_token %}
-                            <input type="hidden" name="story_id" value="1">
+                            <input type="hidden" name="story_id" value="{{ story.id }}">
                             <div class="form-group">
                                 <label class="form-label">Your Comment</label>
                                 <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
@@ -315,110 +322,13 @@ textarea.form-control {
                 </div>
             </div>
         </div>
+        {% endfor %}
 
-        <!-- Story 2 -->
-        <div class="story-card">
-            <div class="story-image">
-                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771818743/marcus_ns3wgs.webp" 
-                     alt="Story 2 Image" 
-                     class="story-img" 
-                     style="max-height: 300px; width: auto;">
-            </div>
-            <div class="story-content">
-                <h2 class="story-title">From Landlocked to Wave Rider</h2>
-                <p class="story-meta">By Marcus Chen • February 10, 2026</p>
-                
-                <div class="story-text">
-                    <p>Growing up in the Midlands, I never dreamed I'd be a surfer. Surfing seemed like something that happened in far-off places, not for people like me. When Open Ocean Collective organized a trip to Devon, I decided to give it a shot. I was terrified. I fell off my board more times than I can count, but the community never made me feel bad about it. They cheered me on, gave me tips, and made me feel like I belonged. Now, monthly trips are my therapy. Being on the water, surrounded by people who celebrate diversity as much as great waves, has transformed my life. I've found not just a hobby, but a family.</p>
-                </div>
-
-                <div class="comments-section">
-                    <h4 class="comments-title">
-                        <i class="fas fa-comments me-2"></i>Comments
-                    </h4>
-
-                    <div class="comment">
-                        <div class="comment-author">Emma Thompson</div>
-                        <div class="comment-date">February 11, 2026</div>
-                        <div class="comment-text">Love this! The monthly trips have changed my life too. Welcome to the fam! 🌊</div>
-                    </div>
-
-                    {% if user.is_authenticated %}
-                    <div class="comment-form">
-                        <h4>Leave a Comment</h4>
-                        <form method="POST" action="#">
-                            {% csrf_token %}
-                            <input type="hidden" name="story_id" value="2">
-                            <div class="form-group">
-                                <label class="form-label">Your Comment</label>
-                                <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn-submit-comment">Post Comment</button>
-                        </form>
-                    </div>
-                    {% else %}
-                    <div class="auth-prompt">
-                        <p><a href="{% url 'account_login' %}">Sign in</a> or <a href="{% url 'account_signup' %}">create an account</a> to comment on stories</p>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
+        {% if not stories %}
+        <div style="text-align: center; padding: 60px 20px;">
+            <p style="font-family: 'Radley', serif; font-size: 1.2rem; color: #666;">No stories yet. Check back soon for inspiring community tales!</p>
         </div>
-
-        <!-- Story 3 -->
-        <div class="story-card">
-            <div class="story-image">
-                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771817513/Sarah_y4zgix.png" 
-                     alt="Story 3 Image" 
-                     class="story-img" 
-                     style="max-height: 300px; width: auto;">
-            </div>
-            <div class="story-content">
-                <h2 class="story-title">Breaking Barriers, One Wave at a Time</h2>
-                <p class="story-meta">By Priya Desai • February 5, 2026</p>
-                
-                <div class="story-text">
-                    <p>As a woman of color navigating the British surf scene, I faced more than just challenging waters. There were sidelong glances, assumptions, and times I felt invisible in the lineup. Open Ocean Collective changed everything. For the first time, I saw people who looked like me out there, breaking the stereotype. I found mentors, made lifelong friends, and most importantly, I found my voice. The ocean doesn't care about your background—it tests your courage, your determination, and your spirit. And Open Ocean Collective made sure I knew I deserved to be there. If you've ever felt like the ocean wasn't "for you," I'm here to tell you: it absolutely is. Come join us. 🌊</p>
-                </div>
-
-                <div class="comments-section">
-                    <h4 class="comments-title">
-                        <i class="fas fa-comments me-2"></i>Comments
-                    </h4>
-
-                    <div class="comment">
-                        <div class="comment-author">Zoe Miller</div>
-                        <div class="comment-date">February 6, 2026</div>
-                        <div class="comment-text">Your story is so powerful. Thank you for paving the way for the rest of us! 💪</div>
-                    </div>
-
-                    <div class="comment">
-                        <div class="comment-author">Kai Rogers</div>
-                        <div class="comment-date">February 7, 2026</div>
-                        <div class="comment-text">Standing ovation! This is what diversity in surfing should look like!</div>
-                    </div>
-
-                    {% if user.is_authenticated %}
-                    <div class="comment-form">
-                        <h4>Leave a Comment</h4>
-                        <form method="POST" action="#">
-                            {% csrf_token %}
-                            <input type="hidden" name="story_id" value="3">
-                            <div class="form-group">
-                                <label class="form-label">Your Comment</label>
-                                <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn-submit-comment">Post Comment</button>
-                        </form>
-                    </div>
-                    {% else %}
-                    <div class="auth-prompt">
-                        <p><a href="{% url 'account_login' %}">Sign in</a> or <a href="{% url 'account_signup' %}">create an account</a> to comment on stories</p>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+        {% endif %}
     </div>
 </section>
 
