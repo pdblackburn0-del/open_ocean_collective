@@ -224,18 +224,23 @@
                     </div>
 
                     {% if user.is_authenticated %}
-                    <form method="POST" class="signup-btn">
-                        {% csrf_token %}
-                        <input type="hidden" name="trip" value="cornwall-jan">
-                        <button 
-                    type="button" 
-                    class="btn btn-dark btn-cta w-100"
-                    data-bs-toggle="modal" 
-                    data-bs-target="#signupModal"
-                    onclick="submitTripForm(this)">
-                    Sign Up for Trip
-                    </button>
-                    </form>
+                    <div class="signup-container" style="display: flex; gap: 10px; align-items: stretch;">
+                        <form method="POST" class="signup-btn" style="flex: 1;">
+                            {% csrf_token %}
+                            <input type="hidden" name="trip" value="cornwall-jan">
+                            <button 
+                        type="button" 
+                        class="btn btn-dark btn-cta w-100"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#signupModal"
+                        onclick="submitTripForm(this)">
+                        Sign Up for Trip
+                        </button>
+                        </form>
+                        <button class="btn btn-success btn-cta signup-checkmark" style="display: none; width: auto; padding: 0 20px;" disabled>
+                            <i class="fas fa-check" style="font-size: 1.5rem;"></i>
+                        </button>
+                    </div>
                     {% else %}
                     <button class="btn btn-outline-dark btn-cta w-100 signup-btn" disabled>
                         Sign In to Register
@@ -260,18 +265,23 @@
                     </div>
 
                     {% if user.is_authenticated %}
-                    <form method="POST" class="signup-btn">
-                        {% csrf_token %}
-                        <input type="hidden" name="trip" value="bristol-feb">
-                        <button 
-                        type="button" 
-                        class="btn btn-dark btn-cta w-100"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#signupModal"
-                        onclick="submitTripForm(this)">
-                        Sign Up for Trip
+                    <div class="signup-container" style="display: flex; gap: 10px; align-items: stretch;">
+                        <form method="POST" class="signup-btn" style="flex: 1;">
+                            {% csrf_token %}
+                            <input type="hidden" name="trip" value="bristol-feb">
+                            <button 
+                            type="button" 
+                            class="btn btn-dark btn-cta w-100"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#signupModal"
+                            onclick="submitTripForm(this)">
+                            Sign Up for Trip
+                            </button>
+                           </form>
+                        <button class="btn btn-success btn-cta signup-checkmark" style="display: none; width: auto; padding: 0 20px;" disabled>
+                            <i class="fas fa-check" style="font-size: 1.5rem;"></i>
                         </button>
-                       </form>
+                    </div>
                     {% else %}
                     <button class="btn btn-outline-dark btn-cta w-100 signup-btn" disabled>
                         Sign In to Register
@@ -296,18 +306,23 @@
                     </div>
 
                     {% if user.is_authenticated %}
-                    <form method="POST" class="signup-btn">
-                        {% csrf_token %}
-                    <input type="hidden" name="trip" value="pembrokeshire-mar">
-                        <button 
-                        type="button" 
-                        class="btn btn-dark btn-cta w-100"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#signupModal"
-                        onclick="submitTripForm(this)">
-                        Sign Up for Trip
+                    <div class="signup-container" style="display: flex; gap: 10px; align-items: stretch;">
+                        <form method="POST" class="signup-btn" style="flex: 1;">
+                            {% csrf_token %}
+                        <input type="hidden" name="trip" value="pembrokeshire-mar">
+                            <button 
+                            type="button" 
+                            class="btn btn-dark btn-cta w-100"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#signupModal"
+                            onclick="submitTripForm(this)">
+                            Sign Up for Trip
+                            </button>
+                        </form>
+                        <button class="btn btn-success btn-cta signup-checkmark" style="display: none; width: auto; padding: 0 20px;" disabled>
+                            <i class="fas fa-check" style="font-size: 1.5rem;"></i>
                         </button>
-                    </form>
+                    </div>
                     {% else %}
                     <button class="btn btn-outline-dark btn-cta w-100 signup-btn" disabled>
                         Sign In to Register
@@ -332,19 +347,24 @@
                     </div>
 
                     {% if user.is_authenticated %}
-                    <form method="POST" class="signup-btn">
-                        {% csrf_token %}
-                        <input type="hidden" name="trip" value="croyde-apr">
-                        <button 
-                        type="button" 
-                        class="btn btn-dark btn-cta w-100"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#signupModal"
-                        onclick="submitTripForm(this)">
-                        Sign Up for Trip
+                    <div class="signup-container" style="display: flex; gap: 10px; align-items: stretch;">
+                        <form method="POST" class="signup-btn" style="flex: 1;">
+                            {% csrf_token %}
+                            <input type="hidden" name="trip" value="croyde-apr">
+                            <button 
+                            type="button" 
+                            class="btn btn-dark btn-cta w-100"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#signupModal"
+                            onclick="submitTripForm(this)">
+                            Sign Up for Trip
+                            </button>
+                           
+                        </form>
+                        <button class="btn btn-success btn-cta signup-checkmark" style="display: none; width: auto; padding: 0 20px;" disabled>
+                            <i class="fas fa-check" style="font-size: 1.5rem;"></i>
                         </button>
-                       
-                    </form>
+                    </div>
                     {% else %}
                     <button class="btn btn-outline-dark btn-cta w-100 signup-btn" disabled>
                         Sign In to Register
@@ -391,8 +411,41 @@
 
 <!-- JavaScript to handle form submission and show modal -->
  <script>
+// Initialize checkmarks on page load based on localStorage
+window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.signup-container').forEach(container => {
+        const form = container.querySelector('form');
+        const tripInput = form.querySelector('input[name="trip"]');
+        const tripValue = tripInput.value;
+        
+        // Check if user has already signed up for this trip
+        if (localStorage.getItem(`trip_signup_${tripValue}`)) {
+            const button = form.querySelector('button[type="button"]');
+            const checkmark = container.querySelector('.signup-checkmark');
+            
+            button.style.display = "none";
+            checkmark.style.display = "block";
+        }
+    });
+});
+
 function submitTripForm(button) {
     const form = button.closest("form");
+    const signupContainer = form.closest(".signup-container");
+    const checkmark = signupContainer.querySelector(".signup-checkmark");
+    const tripInput = form.querySelector('input[name="trip"]');
+    const tripValue = tripInput.value;
+    
+    // Store in localStorage
+    localStorage.setItem(`trip_signup_${tripValue}`, 'true');
+    
+    // Show the checkmark button
+    checkmark.style.display = "block";
+    
+    // Hide the signup button
+    button.style.display = "none";
+    
+    // Still submit the form after a delay
     setTimeout(() => {
         form.submit();
     }, 10000);
