@@ -9,6 +9,24 @@ from .models import Meetup, MeetupSignup, Story, Comment
 def index(request):
     return render(request, 'index.html')
 
+def meetups(request):
+    """Display available surf trips"""
+    
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            messages.error(request, "You must be logged in to sign up.")
+            return redirect("account_login")
+
+        trip = request.POST.get("trip")
+
+        # Optional: Save to DB
+        # MeetupSignup.objects.create(user=request.user, trip=trip)
+
+        messages.success(request, "You're signed up!")
+        return redirect("hello_world:meetups")
+
+    return render(request, 'surftrips.html')
+
 
 def login(request):
     """Handle user login"""
