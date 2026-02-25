@@ -227,9 +227,14 @@
                     <form method="POST" class="signup-btn">
                         {% csrf_token %}
                         <input type="hidden" name="trip" value="cornwall-jan">
-                        <button type="submit" class="btn btn-dark btn-cta w-100">
-                            Sign Up for Trip
-                        </button>
+                        <button 
+                    type="button" 
+                    class="btn btn-dark btn-cta w-100"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#signupModal"
+                    onclick="submitTripForm(this)">
+                    Sign Up for Trip
+                    </button>
                     </form>
                     {% else %}
                     <button class="btn btn-outline-dark btn-cta w-100 signup-btn" disabled>
@@ -258,10 +263,15 @@
                     <form method="POST" class="signup-btn">
                         {% csrf_token %}
                         <input type="hidden" name="trip" value="bristol-feb">
-                        <button type="submit" class="btn btn-dark btn-cta w-100">
-                            Sign Up for Trip
+                        <button 
+                        type="button" 
+                        class="btn btn-dark btn-cta w-100"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#signupModal"
+                        onclick="submitTripForm(this)">
+                        Sign Up for Trip
                         </button>
-                    </form>
+                       </form>
                     {% else %}
                     <button class="btn btn-outline-dark btn-cta w-100 signup-btn" disabled>
                         Sign In to Register
@@ -288,9 +298,14 @@
                     {% if user.is_authenticated %}
                     <form method="POST" class="signup-btn">
                         {% csrf_token %}
-                        <input type="hidden" name="trip" value="pembrokeshire-mar">
-                        <button type="submit" class="btn btn-dark btn-cta w-100">
-                            Sign Up for Trip
+                    <input type="hidden" name="trip" value="pembrokeshire-mar">
+                        <button 
+                        type="button" 
+                        class="btn btn-dark btn-cta w-100"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#signupModal"
+                        onclick="submitTripForm(this)">
+                        Sign Up for Trip
                         </button>
                     </form>
                     {% else %}
@@ -320,9 +335,15 @@
                     <form method="POST" class="signup-btn">
                         {% csrf_token %}
                         <input type="hidden" name="trip" value="croyde-apr">
-                        <button type="submit" class="btn btn-dark btn-cta w-100">
-                            Sign Up for Trip
+                        <button 
+                        type="button" 
+                        class="btn btn-dark btn-cta w-100"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#signupModal"
+                        onclick="submitTripForm(this)">
+                        Sign Up for Trip
                         </button>
+                       
                     </form>
                     {% else %}
                     <button class="btn btn-outline-dark btn-cta w-100 signup-btn" disabled>
@@ -339,4 +360,42 @@
 
     
 </section>
+<!-- Signup Success Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:20px;">
+      
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold" id="signupModalLabel">
+          You're In 🌊
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      
+      <div class="modal-body text-center py-4">
+        <p class="fs-5">
+          Thanks for signing up to this surf trip,  
+          our team will be in contact soon.
+        </p>
+      </div>
+
+      <div class="modal-footer border-0 justify-content-center pb-4">
+        <button type="button" class="btn btn-dark btn-cta px-5" data-bs-dismiss="modal">
+          Awesome
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript to handle form submission and show modal -->
+ <script>
+function submitTripForm(button) {
+    const form = button.closest("form");
+    setTimeout(() => {
+        form.submit();
+    }, 10000);
+}
+</script>
 {% endblock %}
