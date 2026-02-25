@@ -2,6 +2,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save 
 from django.contrib.auth.models import User
+from django_summernote.fields import SummernoteTextField
 
 class Profile(models.Model):
     ABILITY_CHOICES = [
@@ -54,7 +55,7 @@ class Story(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=100)
     author_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='stories')
-    content = models.TextField()
+    content = SummernoteTextField()
     image_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -69,7 +70,7 @@ class Story(models.Model):
 class Comment(models.Model):
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = SummernoteTextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

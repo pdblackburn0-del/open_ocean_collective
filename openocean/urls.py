@@ -23,6 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("hello_world.urls")),
     path('accounts/', include('allauth.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
 # Serve static files during development
