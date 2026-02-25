@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Meetup, MeetupSignup, Story, Comment
+from .models import Profile, Meetup, MeetupSignup, Story, Comment, TripSignup
 
 # Register your models here.
 
@@ -17,3 +17,13 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('content', 'user__username', 'story__title')
     list_filter = ('created_at',)
     readonly_fields = ('created_at',)
+
+
+@admin.register(TripSignup)
+class TripSignupAdmin(admin.ModelAdmin):
+    list_display = ('user', 'trip', 'signed_up_at')
+    search_fields = ('user__username', 'user__email', 'trip')
+    list_filter = ('trip', 'signed_up_at')
+    readonly_fields = ('signed_up_at',)
+    ordering = ('-signed_up_at',)
+

@@ -79,6 +79,27 @@ class Comment(models.Model):
         return f"Comment by {self.user.username} on {self.story.title}"
 
 
+class TripSignup(models.Model):
+    """Track user signups for surf trips"""
+    TRIP_CHOICES = [
+        ('cornwall-jan', 'Cornwall - January'),
+        ('devon-feb', 'Devon - February'),
+        ('pembrokeshire-mar', 'Pembrokeshire - March'),
+        ('croyde-apr', 'Croyde - April'),
+    ]
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='trip_signups')
+    trip = models.CharField(max_length=50, choices=TRIP_CHOICES)
+    signed_up_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('user', 'trip')
+        ordering = ['-signed_up_at']
+    
+    def __str__(self):
+        return f"{self.user.username} signed up for {self.get_trip_display()}"
+
+
 # Automatically create Profile when a new User is created
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
