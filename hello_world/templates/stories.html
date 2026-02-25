@@ -243,6 +243,53 @@ textarea.form-control {
         padding: 25px;
     }
 }
+
+.create-story-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 60px 20px;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.create-story-section h2 {
+    font-family: 'Radley', serif;
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.create-story-section p {
+    font-family: 'Radley', serif;
+    color: whitesmoke;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-create-story {
+    background: white;
+    color: #667eea;
+    padding: 16px 50px;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-create-story:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: #f0f0f0;
+}
+
 </style>
 {% endblock %}
 
@@ -328,6 +375,28 @@ textarea.form-control {
         <div style="text-align: center; padding: 60px 20px;">
             <p style="font-family: 'Radley', serif; font-size: 1.2rem; color: #666;">No stories yet. Check back soon for inspiring community tales!</p>
         </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Create Your Own Story Section -->
+<section class="create-story-section">
+    <div class="container">
+        <h2>📖 Share Your Story</h2>
+        <p>Have an inspiring surf story to tell? We'd love to hear it! Share your experiences with our community and inspire others on their wave-riding journey.</p>
+        
+        {% if user.is_authenticated %}
+            <a href="{% url 'hello_world:create_story' %}" class="btn-create-story">
+                <i class="fas fa-pen me-2"></i>Write Your Story
+            </a>
+        {% else %}
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto;">
+                <p style="margin-bottom: 15px; font-family: 'Radley', serif; color: whitesmoke;">
+                    To share your story, please sign in or create an account first.
+                </p>
+                <a href="{% url 'account_login' %}" class="btn-create-story" style="background: #667eea; color: white; margin-right: 10px;">Sign In</a>
+                <a href="{% url 'account_signup' %}" class="btn-create-story" style="background: white; color: #667eea;">Sign Up</a>
+            </div>
         {% endif %}
     </div>
 </section>
