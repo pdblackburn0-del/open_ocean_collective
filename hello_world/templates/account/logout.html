@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Out - Open Ocean Collective{% endblock %}
+
+{% block extra_css %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Radley:ital@0;1&display=swap');
+
+.logout-hero {
+    background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811712/IMG_6533_3_l3v9ti.jpg") no-repeat center center/cover;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.logout-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.logout-card h2 {
+    font-family: 'Estonia', cursive;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.logout-card p {
+    font-family: 'Radley', serif;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logout-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.logout-btn {
+    border-radius: 50px;
+    padding: 14px 40px;
+    font-weight: 600;
+    font-family: 'Radley', serif;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.logout-btn-confirm {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-width: 180px;
+}
+
+.logout-btn-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.logout-btn-cancel {
+    background: #e0e0e0;
+    color: #333;
+    min-width: 180px;
+}
+
+.logout-btn-cancel:hover {
+    background: #d0d0d0;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .logout-card {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+
+    .logout-card h2 {
+        font-size: 2rem;
+    }
+
+    .logout-card p {
+        font-size: 1rem;
+    }
+
+    .logout-buttons {
+        flex-direction: column;
+    }
+
+    .logout-btn {
+        width: 100%;
+        min-width: unset;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="logout-hero">
+    <div class="logout-overlay"></div>
+
+    <div class="logout-card">
+        <h2>Sign Out</h2>
+        <p>
+            Are you sure you want to sign out? You'll need to log back in to access your account and post stories.
+        </p>
+
+        <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <div class="logout-buttons">
+                <button type="submit" class="logout-btn logout-btn-confirm">
+                    Yes, Sign Me Out
+                </button>
+                <a href="{% url 'hello_world:homepage' %}" class="logout-btn logout-btn-cancel">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

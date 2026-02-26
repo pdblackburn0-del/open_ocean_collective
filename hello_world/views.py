@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from allauth.account.forms import SignupForm
 from .models import Meetup, MeetupSignup, Story, Comment
 
@@ -79,6 +79,17 @@ def homepage(request):
 def welcome(request):
     """Welcome page for newly signed up users"""
     return render(request, 'welcome.html')
+
+
+def logout_view(request):
+    """Custom logout view that shows confirmation then logs out and redirects to homepage"""
+    if request.method == 'POST':
+        auth_logout(request)
+        messages.success(request, 'You have been signed out.')
+        return redirect('hello_world:homepage')
+    
+    # Show logout confirmation template
+    return render(request, 'account/logout.html')
 
 
 def stories(request):
