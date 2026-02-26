@@ -55,7 +55,7 @@ class Story(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=100)
     author_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='stories')
-    content = SummernoteTextField()
+    content = models.TextField()
     image_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -70,7 +70,7 @@ class Story(models.Model):
 class Comment(models.Model):
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = SummernoteTextField()
+    content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

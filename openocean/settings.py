@@ -36,14 +36,14 @@ else:
 
 # SECURITY WARNING: keep the secret key used in production secret!
 if os.path.isfile(BASE_DIR / "env.py"):
-    import env
+    import envy
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set DEBUG to True for local development, False for production
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com",]
 

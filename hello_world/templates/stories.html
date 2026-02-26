@@ -307,6 +307,7 @@ textarea.form-control {
 <!-- Stories Section -->
 <section class="stories-section">
     <div class="container">
+
         {% for story in stories %}
         <!-- Story Card -->
         <div class="story-card">
@@ -336,7 +337,7 @@ textarea.form-control {
                         <i class="fas fa-comments me-2"></i>Comments
                     </h4>
 
-                    {% if story.comments.all %}
+                    {% if story.comments.exists %}
                         {% for comment in story.comments.all %}
                         <div class="comment">
                             <div class="comment-author">{{ comment.user.username }}</div>

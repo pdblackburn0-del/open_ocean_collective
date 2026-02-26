@@ -85,8 +85,9 @@ def stories(request):
     """Display community stories and handle comments"""
     if request.method == 'POST':
         if not request.user.is_authenticated:
+            # Redirect unauthenticated users to the login page, then back to stories
             messages.error(request, 'You must be logged in to comment.')
-            return redirect('hello_world:stories')
+            return redirect(f"/accounts/login/?next={request.path}")
         
         story_id = request.POST.get('story_id')
         comment_text = request.POST.get('comment')
