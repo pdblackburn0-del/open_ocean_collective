@@ -304,7 +304,178 @@ textarea.form-control {
     </div>
 </section>
 
+<!-- Create Your Own Story Section -->
+<section class="create-story-section">
+    <div class="container">
+        <h2>📖 Share Your Story</h2>
+        <p>Have an inspiring surf story to tell? We'd love to hear it! Share your experiences with our community and inspire others on their wave-riding journey.</p>
+        
+        {% if user.is_authenticated %}
+            <a href="{% url 'hello_world:create_story' %}" class="btn-create-story">
+                <i class="fas fa-pen me-2"></i>Write Your Story
+            </a>
+        {% else %}
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto;">
+                <p style="margin-bottom: 15px; font-family: 'Radley', serif; color: whitesmoke;">
+                    To share your story, please sign in or create an account first.
+                </p>
+                <a href="{% url 'account_login' %}" class="btn-create-story" style="background: #667eea; color: white; margin-right: 10px;">Sign In</a>
+                <a href="{% url 'account_signup' %}" class="btn-create-story" style="background: white; color: #667eea;">Sign Up</a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
 <!-- Stories Section -->
+<section class="stories-section">
+    <div class="container">
+
+        <!-- Static Story 1: Rob -->
+        <div class="story-card">
+            <div class="story-image" role="img" aria-label="Rob riding a wave">
+                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1772139272/Rob_a9gwqd.png" 
+                     alt="Rob riding a wave"
+                     style="max-height: 300px; max-width: 100%; width: auto; object-fit: contain;">
+            </div>
+            <div class="story-content">
+                <h2 class="story-title">Rob — Finding Waves</h2>
+                <p class="story-meta">By Rob • February 26, 2026</p>
+
+                <div class="story-text">
+                    <p>Rob was introduced to surfing through Open Ocean Collective. Born with cerebral palsy, he had long believed the sea and surf were out of reach. With patient volunteers, adaptive coaching and a community that emphasises welcome and safety, Rob discovered not only how to catch a wave but how empowering the ocean can be.</p>
+
+                    <p>"I remember the first time I felt the board move beneath me — it was like flying," Rob says. "The community helped me find new confidence and taught me that adapting doesn't mean giving up; it means finding new ways to be part of the waves."</p>
+
+                    <p>Rob now joins group surf sessions whenever possible and helps mentor new participants who need extra support. His story is a reminder that surfing can be made accessible to many bodies and that inclusive communities create space for everyone to thrive.</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h4 class="comments-title">
+                        <i class="fas fa-comments me-2"></i>Comments
+                    </h4>
+
+                    <p style="color: #999; font-family: 'Radley', serif; margin-bottom: 20px;">No comments yet. Be the first to share your thoughts!</p>
+
+                    {% if user.is_authenticated %}
+                    <div class="comment-form">
+                        <h4>Leave a Comment</h4>
+                        <form method="POST" class="static-story-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="story_type" value="rob_static">
+                            <div class="form-group">
+                                <label class="form-label">Your Comment</label>
+                                <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit-comment">Post Comment</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="auth-prompt">
+                        <p><a href="{% url 'account_login' %}">Sign in</a> or <a href="{% url 'account_signup' %}">create an account</a> to comment on stories</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Static Story 2: Maya -->
+        <div class="story-card">
+            <div class="story-image" role="img" aria-label="Maya at sunrise">
+                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771817513/Sarah_y4zgix.png" 
+                     alt="Maya at sunrise"
+                     style="max-height: 300px; max-width: 100%; width: auto; object-fit: contain;">
+            </div>
+            <div class="story-content">
+                <h2 class="story-title">Maya — From Fear to Freedom</h2>
+                <p class="story-meta">By Maya • February 20, 2026</p>
+
+                <div class="story-text">
+                    <p>I was terrified of the ocean. Growing up, I never imagined myself as a surfer. But when I found Open Ocean Collective, everything changed. The community welcomed me without judgment, and my first instructors were incredibly patient and encouraging.</p>
+
+                    <p>The waves taught me so much more than just how to paddle and pop up. They taught me resilience, courage, and self-belief. Every time I face a challenge on the water, I think about all the challenges I've overcome off it. Surfing became my therapy, my happy place, my escape.</p>
+
+                    <p>Now I'm the one encouraging others to give it a try. If I can do it, anyone can. The ocean has given me a community, a passion, and a piece of myself I didn't know was missing.</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h4 class="comments-title">
+                        <i class="fas fa-comments me-2"></i>Comments
+                    </h4>
+
+                    <p style="color: #999; font-family: 'Radley', serif; margin-bottom: 20px;">No comments yet. Be the first to share your thoughts!</p>
+
+                    {% if user.is_authenticated %}
+                    <div class="comment-form">
+                        <h4>Leave a Comment</h4>
+                        <form method="POST" class="static-story-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="story_type" value="maya_static">
+                            <div class="form-group">
+                                <label class="form-label">Your Comment</label>
+                                <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit-comment">Post Comment</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="auth-prompt">
+                        <p><a href="{% url 'account_login' %}">Sign in</a> or <a href="{% url 'account_signup' %}">create an account</a> to comment on stories</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Static Story 3: Ahmed -->
+        <div class="story-card">
+            <div class="story-image" role="img" aria-label="Ahmed in the lineup">
+                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1772140011/Screenshot_2026-02-26_at_21.06.19_u6lomd.png" 
+                     alt="Ahmed in the lineup"
+                     style="max-height: 300px; max-width: 100%; width: auto; object-fit: contain;">
+            </div>
+            <div class="story-content">
+                <h2 class="story-title">Ahmed — Breaking Barriers</h2>
+                <p class="story-meta">By Ahmed • February 15, 2026</p>
+
+                <div class="story-text">
+                    <p>As a young Muslim man from east London, I never saw people who looked like me out in the water. Surfing seemed like something for someone else, someone different. When I discovered Open Ocean Collective, I finally felt like I belonged.</p>
+
+                    <p>The diversity in the lineup is what drew me in and kept me coming back. Seeing women, people of color, people from different backgrounds all sharing a passion for the ocean broke down so many stereotypes I didn't even know I had.</p>
+
+                    <p>Now, surfing is my favorite way to spend a Saturday morning. The water doesn't care about your background, your beliefs, or where you come from. It only cares that you show up ready to learn and have fun. Open Ocean Collective gave me that freedom.</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h4 class="comments-title">
+                        <i class="fas fa-comments me-2"></i>Comments
+                    </h4>
+
+                    <p style="color: #999; font-family: 'Radley', serif; margin-bottom: 20px;">No comments yet. Be the first to share your thoughts!</p>
+
+                    {% if user.is_authenticated %}
+                    <div class="comment-form">
+                        <h4>Leave a Comment</h4>
+                        <form method="POST" class="static-story-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="story_type" value="ahmed_static">
+                            <div class="form-group">
+                                <label class="form-label">Your Comment</label>
+                                <textarea class="form-control" name="comment" placeholder="Share your thoughts..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit-comment">Post Comment</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="auth-prompt">
+                        <p><a href="{% url 'account_login' %}">Sign in</a> or <a href="{% url 'account_signup' %}">create an account</a> to comment on stories</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
         {% for story in stories %}
         <!-- Story Card -->
@@ -314,7 +485,7 @@ textarea.form-control {
                 <img src="{{ story.image_url }}" 
                      alt="{{ story.title }}" 
                      class="story-img" 
-                     style="max-height: 300px; width: auto;">
+                     style="max-height: 300px; max-width: 100%; width: auto; object-fit: contain;">
                 {% else %}
                 <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
                     📖
@@ -378,26 +549,113 @@ textarea.form-control {
     </div>
 </section>
 
-<!-- Create Your Own Story Section -->
-<section class="create-story-section">
-    <div class="container">
-        <h2>📖 Share Your Story</h2>
-        <p>Have an inspiring surf story to tell? We'd love to hear it! Share your experiences with our community and inspire others on their wave-riding journey.</p>
+
+
+<script>
+// Handle instant comment posting on static stories
+document.querySelectorAll('.static-story-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        {% if user.is_authenticated %}
-            <a href="{% url 'hello_world:create_story' %}" class="btn-create-story">
-                <i class="fas fa-pen me-2"></i>Write Your Story
-            </a>
-        {% else %}
-            <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto;">
-                <p style="margin-bottom: 15px; font-family: 'Radley', serif; color: whitesmoke;">
-                    To share your story, please sign in or create an account first.
-                </p>
-                <a href="{% url 'account_login' %}" class="btn-create-story" style="background: #667eea; color: white; margin-right: 10px;">Sign In</a>
-                <a href="{% url 'account_signup' %}" class="btn-create-story" style="background: white; color: #667eea;">Sign Up</a>
-            </div>
-        {% endif %}
-    </div>
-</section>
+        const textarea = form.querySelector('textarea[name="comment"]');
+        const commentText = textarea.value.trim();
+        const storyType = form.querySelector('input[name="story_type"]').value;
+        const commentsSection = form.closest('.comments-section');
+        
+        if (!commentText) {
+            alert('Comment cannot be empty.');
+            return;
+        }
+        
+        try {
+            const formData = new FormData(form);
+            const response = await fetch('{% url "hello_world:stories" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            
+            if (response.ok) {
+                // Clear the textarea
+                textarea.value = '';
+                
+                // Find or create the comments list
+                let commentsList = commentsSection.querySelector('.comments-list');
+                if (!commentsList) {
+                    commentsList = document.createElement('div');
+                    commentsList.className = 'comments-list';
+                    commentsList.style.cssText = 'margin-bottom: 20px;';
+                    commentsSection.insertBefore(commentsList, commentsSection.querySelector('.comment-form'));
+                }
+                
+                // Hide "No comments yet" message if visible
+                const noCommentsMsg = commentsSection.querySelector('p:not(.story-meta)');
+                if (noCommentsMsg) {
+                    noCommentsMsg.style.display = 'none';
+                }
+                
+                // Add the new comment to the list
+                const commentDiv = document.createElement('div');
+                commentDiv.style.cssText = `
+                    background: #f9f9f9;
+                    padding: 15px;
+                    border-left: 3px solid #667eea;
+                    margin-bottom: 15px;
+                    border-radius: 4px;
+                    font-family: 'Radley', serif;
+                `;
+                
+                const username = '{{ user.username }}';
+                const now = new Date();
+                const timeStr = now.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                commentDiv.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <strong style="color: #333;">${username}</strong>
+                        <small style="color: #999;">${timeStr}</small>
+                    </div>
+                    <p style="color: #555; margin: 0;">${commentText.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+                `;
+                
+                commentsList.appendChild(commentDiv);
+                
+                // Show success message
+                const existingMessage = commentsSection.querySelector('.comment-success');
+                if (!existingMessage) {
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'comment-success';
+                    successMsg.style.cssText = `
+                        background: #d4edda;
+                        color: #155724;
+                        padding: 10px 15px;
+                        border-radius: 4px;
+                        margin-bottom: 15px;
+                        font-family: 'Radley', serif;
+                        font-size: 0.9rem;
+                    `;
+                    successMsg.textContent = 'Thank you for your comment!';
+                    commentsSection.insertBefore(successMsg, commentsSection.querySelector('.comment-form'));
+                    
+                    // Remove success message after 3 seconds
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 3000);
+                }
+            }
+        } catch (error) {
+            console.error('Error posting comment:', error);
+            alert('Error posting comment. Please try again.');
+        }
+    });
+});
+</script>
 
 {% endblock %}

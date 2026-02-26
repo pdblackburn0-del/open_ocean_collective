@@ -120,22 +120,31 @@ def stories(request):
             messages.error(request, 'You must be logged in to comment.')
             return redirect(f"/accounts/login/?next={request.path}")
         
-        story_id = request.POST.get('story_id')
+        story_type = request.POST.get('story_type')
         comment_text = request.POST.get('comment')
         
-        try:
-            story = Story.objects.get(id=story_id)
+        # Handle static story comments (rob_static, maya_static, ahmed_static)
+        if story_type and story_type.endswith('_static'):
             if comment_text.strip():
-                Comment.objects.create(
-                    story=story,
-                    user=request.user,
-                    content=comment_text
-                )
-                messages.success(request, 'Your comment has been posted!')
+                messages.success(request, 'Thank you for your comment on this story!')
             else:
                 messages.warning(request, 'Comment cannot be empty.')
-        except Story.DoesNotExist:
-            messages.error(request, 'Story not found.')
+        else:
+            # Handle dynamic story comments from database
+            story_id = request.POST.get('story_id')
+            try:
+                story = Story.objects.get(id=story_id)
+                if comment_text.strip():
+                    Comment.objects.create(
+                        story=story,
+                        user=request.user,
+                        content=comment_text
+                    )
+                    messages.success(request, 'Your comment has been posted!')
+                else:
+                    messages.warning(request, 'Comment cannot be empty.')
+            except Story.DoesNotExist:
+                messages.error(request, 'Story not found.')
         
         return redirect('hello_world:stories')
     
