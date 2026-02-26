@@ -411,15 +411,15 @@
 
 <!-- JavaScript to handle form submission and show modal -->
  <script>
-// Initialize checkmarks on page load based on localStorage
+// Initialize checkmarks on page load based on sessionStorage (not localStorage)
 window.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.signup-container').forEach(container => {
         const form = container.querySelector('form');
         const tripInput = form.querySelector('input[name="trip"]');
         const tripValue = tripInput.value;
         
-        // Check if user has already signed up for this trip
-        if (localStorage.getItem(`trip_signup_${tripValue}`)) {
+        // Check if user has already signed up for this trip in THIS session only
+        if (sessionStorage.getItem(`trip_signup_${tripValue}`)) {
             const button = form.querySelector('button[type="button"]');
             const checkmark = container.querySelector('.signup-checkmark');
             
@@ -436,8 +436,8 @@ function submitTripForm(button) {
     const tripInput = form.querySelector('input[name="trip"]');
     const tripValue = tripInput.value;
     
-    // Store in localStorage
-    localStorage.setItem(`trip_signup_${tripValue}`, 'true');
+    // Store in sessionStorage (clears when browser closes)
+    sessionStorage.setItem(`trip_signup_${tripValue}`, 'true');
     
     // Show the checkmark button
     checkmark.style.display = "block";
