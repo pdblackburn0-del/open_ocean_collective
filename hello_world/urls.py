@@ -12,5 +12,7 @@ urlpatterns = [
     path('meetups/', views.meetups, name='meetups'),
     path('stories/', views.stories, name='stories'),
     path('stories/create/', views.create_story, name='create_story'),
+    path('stories/<int:story_id>/edit/', views.edit_story, name='edit_story'),
+    path('stories/<int:story_id>/delete/', views.delete_story, name='delete_story'),
     path("homepage/", views.homepage, name="homepage"),
 ]

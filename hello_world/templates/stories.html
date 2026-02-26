@@ -496,6 +496,17 @@ textarea.form-control {
                 <h2 class="story-title">{{ story.title }}</h2>
                 <p class="story-meta">By {{ story.author }} • {{ story.created_at|date:"F d, Y" }}</p>
                 
+                {% if user.is_authenticated and user == story.author_user %}
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <a href="{% url 'hello_world:edit_story' story.id %}" class="btn-story-action" style="background: #667eea; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-family: 'Radley', serif; font-size: 0.9rem; display: inline-block; transition: all 0.3s;">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a href="{% url 'hello_world:delete_story' story.id %}" class="btn-story-action" style="background: #d32f2f; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-family: 'Radley', serif; font-size: 0.9rem; display: inline-block; transition: all 0.3s;">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                </div>
+                {% endif %}
+                
                 <div class="story-text">
                     <p>{{ story.content }}</p>
                 </div>

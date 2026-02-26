@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Story - Open Ocean Collective{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Radley:ital@0;1&display=swap');
+
+.edit-story-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.edit-story-container h1 {
+    font-family: 'Estonia', cursive;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    font-family: 'Radley', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-family: 'Radley', serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-control-textarea {
+    min-height: 300px;
+    resize: vertical;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn-save, .btn-cancel {
+    padding: 12px 40px;
+    font-family: 'Radley', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-cancel {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #d0d0d0;
+}
+
+.form-hint {
+    font-family: 'Radley', serif;
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .edit-story-container {
+        margin: 40px 20px;
+        padding: 20px;
+    }
+
+    .edit-story-container h1 {
+        font-size: 2rem;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn-save, .btn-cancel {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="edit-story-container">
+    <h1>Edit Your Story</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="title" class="form-label">Story Title *</label>
+            <input type="text" 
+                   id="title" 
+                   name="title" 
+                   class="form-control" 
+                   value="{{ story.title }}"
+                   required>
+            <div class="form-hint">Give your story a compelling title</div>
+        </div>
+
+        <div class="form-group">
+            <label for="content" class="form-label">Your Story *</label>
+            <textarea id="content" 
+                      name="content" 
+                      class="form-control form-control-textarea" 
+                      required>{{ story.content }}</textarea>
+            <div class="form-hint">Share your surf journey, experiences, and what this community means to you</div>
+        </div>
+
+        <div class="form-group">
+            <label for="image_url" class="form-label">Image URL (Optional)</label>
+            <input type="url" 
+                   id="image_url" 
+                   name="image_url" 
+                   class="form-control" 
+                   value="{{ story.image_url }}"
+                   placeholder="https://example.com/image.jpg">
+            <div class="form-hint">Add a photo from Cloudinary or another image hosting service</div>
+        </div>
+
+        <div class="btn-group">
+            <button type="submit" class="btn-save">Save Changes</button>
+            <a href="{% url 'hello_world:stories' %}" class="btn-cancel">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

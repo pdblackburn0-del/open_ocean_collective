@@ -153,3 +153,66 @@ def stories(request):
         'stories': stories
     }
     return render(request, 'stories.html', context)
+
+
+@login_required
+def edit_story(request, story_id):
+    """Handle story editing"""
+    try:
+        story = Story.objects.get(id=story_id)
+    except Story.DoesNotExist:
+        messages.error(request, 'Story not found.')
+        return redirect('hello_world:stories')
+    
+    # Check if user is the author
+    if story.author_user != request.user:
+        messages.error(request, 'You can only edit your own stories.')
+        return redirect('hello_world:stories')
+    
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        image_url = request.POST.get('image_url', '')
+        
+        if title and content:
+            story.title = title
+            story.content = content
+            story.image_url = image_url
+            story.save()
+            messages.success(request, 'Your story has been updated!')
+            return redirect('hello_world:stories')
+        else:
+            messages.error(request, 'Please fill in all required fields.')
+    
+    context = {
+        'story': story,
+        'is_edit': True
+    }
+    return render(request, 'edit_story.html', context)
+
+
+@login_required
+def delete_story(request, story_id):
+    """Handle story deletion"""
+    try:
+        story = Story.objects.get(id=story_id)
+    except Story.DoesNotExist:
+        messages.error(request, 'Story not found.')
+        return redirect('hello_world:stories')
+    
+    # Check if user is the author
+    if story.author_user != request.user:
+        messages.error(request, 'You can only delete your own stories.')
+        return redirect('hello_world:stories')
+    
+    if request.method == 'POST':
+        story_title = story.title
+        story.delete()
+        messages.success(request, f'Your story "{story_title}" has been deleted.')
+        return redirect('hello_world:stories')
+    
+    # Show confirmation template
+    context = {
+        'story': story
+    }
+    return render(request, 'delete_story.html', context)

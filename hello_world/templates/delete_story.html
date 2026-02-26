@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Story - Open Ocean Collective{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Radley:ital@0;1&display=swap');
+
+.delete-confirmation {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.delete-confirmation h1 {
+    font-family: 'Estonia', cursive;
+    font-size: 2.5rem;
+    color: #d32f2f;
+    margin-bottom: 20px;
+}
+
+.delete-confirmation p {
+    font-family: 'Radley', serif;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.story-preview {
+    background: #f9f9f9;
+    padding: 20px;
+    border-left: 4px solid #667eea;
+    border-radius: 6px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.story-preview h3 {
+    font-family: 'Radley', serif;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.story-preview p {
+    font-family: 'Radley', serif;
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.warning-text {
+    background: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 20px 0;
+    font-family: 'Radley', serif;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn-delete, .btn-cancel {
+    padding: 12px 40px;
+    font-family: 'Radley', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-delete {
+    background: #d32f2f;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+}
+
+.btn-cancel {
+    background: #667eea;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .delete-confirmation {
+        margin: 40px 20px;
+        padding: 20px;
+    }
+
+    .delete-confirmation h1 {
+        font-size: 2rem;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn-delete, .btn-cancel {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="delete-confirmation">
+    <h1>Delete Story?</h1>
+
+    <p>You're about to permanently delete this story. This action cannot be undone.</p>
+
+    <div class="story-preview">
+        <h3>{{ story.title }}</h3>
+        <p>{{ story.content|truncatewords:30 }}</p>
+    </div>
+
+    <div class="warning-text">
+        <strong>⚠️ Warning:</strong> Deleting this story will remove it from the site permanently, along with all comments on it.
+    </div>
+
+    <p style="margin-top: 20px; margin-bottom: 20px;">Are you sure you want to continue?</p>
+
+    <div class="btn-group">
+        <form method="POST" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">Yes, Delete Story</button>
+        </form>
+        <a href="{% url 'hello_world:stories' %}" class="btn-cancel" style="text-decoration: none; display: inline-block;">Cancel</a>
+    </div>
+</section>
+{% endblock %}
