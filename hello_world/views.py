@@ -65,6 +65,26 @@ def signup(request):
 # Step 5: Member-only page
 @login_required
 def create_story(request):
+    """Handle story creation and posting"""
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        content = request.POST.get('content')
+        image_url = request.POST.get('image_url', '')
+        
+        if title and author and content:
+            Story.objects.create(
+                title=title,
+                author=author,
+                content=content,
+                image_url=image_url,
+                author_user=request.user
+            )
+            messages.success(request, 'Your story has been posted! Thank you for sharing your journey.')
+            return redirect('hello_world:stories')
+        else:
+            messages.error(request, 'Please fill in all required fields.')
+    
     return render(request, 'create_story.html')
 
 

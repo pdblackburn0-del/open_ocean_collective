@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Write Your Story - Open Ocean Collective{% endblock %}
+
+{% block extra_css %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Radley:ital@0;1&display=swap');
+
+.create-story-hero {
+    background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png") no-repeat center center/cover;
+    height: 50vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.create-story-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.create-story-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.create-story-hero h1 {
+    font-family: 'Estonia', cursive;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: whitesmoke;
+}
+
+.create-story-hero p {
+    font-family: 'Radley', serif;
+    font-size: 1.3rem;
+    color: whitesmoke;
+}
+
+.create-story-section {
+    padding: 80px 20px;
+    background-color: antiquewhite;
+    min-height: 60vh;
+}
+
+.story-form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story-form-card h2 {
+    font-family: 'Radley', serif;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 1.1rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Radley', serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 250px;
+}
+
+.form-help-text {
+    font-family: 'Radley', serif;
+    color: #999;
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.btn-submit-story {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit-story:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-cancel-story {
+    background: #e0e0e0;
+    border: none;
+    color: #333;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-family: 'Radley', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cancel-story:hover {
+    background: #d0d0d0;
+    transform: translateY(-2px);
+}
+
+.intro-text {
+    font-family: 'Radley', serif;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .create-story-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .story-form-card {
+        padding: 25px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn-submit-story, .btn-cancel-story {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="create-story-hero">
+    <div class="create-story-overlay"></div>
+    <div class="create-story-hero-content">
+        <h1>Share Your Story</h1>
+        <p>Inspire our community with your surf journey</p>
+    </div>
+</section>
+
+<!-- Story Creation Section -->
+<section class="create-story-section">
+    <div class="container">
+        <div class="story-form-card">
+            <h2>📖 Write Your Story</h2>
+            
+            <p class="intro-text">
+                We'd love to hear about your surfing journey! Share your experiences, challenges, and triumphs with the Open Ocean Collective community. Your story could inspire someone else to take their first wave.
+            </p>
+
+            <form method="POST" action="{% url 'hello_world:create_story' %}">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label class="form-label" for="title">Story Title *</label>
+                    <input 
+                        type="text" 
+                        id="title"
+                        name="title" 
+                        class="form-control" 
+                        placeholder="Give your story a compelling title"
+                        required>
+                    <p class="form-help-text">What's the main theme or title of your story?</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="author">Your Name *</label>
+                    <input 
+                        type="text" 
+                        id="author"
+                        name="author" 
+                        class="form-control" 
+                        placeholder="How should we credit you?"
+                        required>
+                    <p class="form-help-text">This is how your story will be attributed.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="content">Your Story *</label>
+                    <textarea 
+                        id="content"
+                        name="content" 
+                        class="form-control" 
+                        placeholder="Tell us your story... What inspired you to surf? What challenges have you overcome? What does the ocean mean to you?"
+                        required></textarea>
+                    <p class="form-help-text">Share as much detail as you'd like. The more personal, the better!</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="image_url">Image URL (Optional)</label>
+                    <input 
+                        type="url" 
+                        id="image_url"
+                        name="image_url" 
+                        class="form-control" 
+                        placeholder="https://example.com/your-image.jpg">
+                    <p class="form-help-text">Add a photo or image that represents your story (must be a full URL)</p>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-submit-story">
+                        <i class="fas fa-check me-2"></i>Publish Story
+                    </button>
+                    <a href="{% url 'hello_world:stories' %}" class="btn-cancel-story">
+                        <i class="fas fa-times me-2"></i>Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
