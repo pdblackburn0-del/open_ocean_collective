@@ -216,3 +216,62 @@ def delete_story(request, story_id):
         'story': story
     }
     return render(request, 'delete_story.html', context)
+
+
+@login_required
+def edit_comment(request, comment_id):
+    """Handle comment editing"""
+    try:
+        comment = Comment.objects.get(id=comment_id)
+    except Comment.DoesNotExist:
+        messages.error(request, 'Comment not found.')
+        return redirect('hello_world:stories')
+    
+    # Check if user is the author
+    if comment.user != request.user:
+        messages.error(request, 'You can only edit your own comments.')
+        return redirect('hello_world:stories')
+    
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        
+        if content.strip():
+            comment.content = content
+            comment.save()
+            messages.success(request, 'Your comment has been updated!')
+        else:
+            messages.error(request, 'Comment cannot be empty.')
+        
+        return redirect('hello_world:stories')
+    
+    context = {
+        'comment': comment
+    }
+    return render(request, 'edit_comment.html', context)
+
+
+@login_required
+def delete_comment(request, comment_id):
+    """Handle comment deletion"""
+    try:
+        comment = Comment.objects.get(id=comment_id)
+    except Comment.DoesNotExist:
+        messages.error(request, 'Comment not found.')
+        return redirect('hello_world:stories')
+    
+    # Check if user is the author
+    if comment.user != request.user:
+        messages.error(request, 'You can only delete your own comments.')
+        return redirect('hello_world:stories')
+    
+    if request.method == 'POST':
+        story_id = comment.story.id
+        comment.delete()
+        messages.success(request, 'Your comment has been deleted.')
+        return redirect('hello_world:stories')
+    
+    # Show confirmation template
+    context = {
+        'comment': comment
+    }
+    return render(request, 'delete_comment.html', context)

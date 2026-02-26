@@ -14,5 +14,7 @@ urlpatterns = [
     path('stories/create/', views.create_story, name='create_story'),
     path('stories/<int:story_id>/edit/', views.edit_story, name='edit_story'),
     path('stories/<int:story_id>/delete/', views.delete_story, name='delete_story'),
+    path('comments/<int:comment_id>/edit/', views.edit_comment, name='edit_comment'),
+    path('comments/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
     path("homepage/", views.homepage, name="homepage"),
 ]
