@@ -127,9 +127,6 @@ This Agile approach ensured the final implementation fully satisfied the origina
 
 
 ## Database Design & Development (LO1.2, LO2.1, LO7.1)
-🗄️ Database Design & Application Logic
-
-(LO1.2, LO2.1, LO7.1)
 
 The Open Ocean Collective application is built using the Django framework and its built-in ORM to manage data securely and efficiently.
 
@@ -144,7 +141,8 @@ Meetup listings
 User authentication and access control
 
 Custom Data Models
-1️⃣ Story Model
+
+Story Model:
 
 The Story model stores community-submitted surfing experiences.
 
@@ -168,7 +166,7 @@ Each story → One author
 
 This relationship is enforced using Django’s ForeignKey field to ensure data integrity.
 
-2️⃣ Comment Model
+Comment Model:
 
 The Comment model allows users to engage with stories.
 
@@ -190,7 +188,7 @@ One user → Many comments
 
 If a story is deleted, its related comments are also removed using cascading delete behaviour.
 
-3️⃣ Meetup Model
+Meetup Model:
 
 The Meetup model supports surf trip listings, allowing users to view available surf meetups. Although sign-ups are currently handled via form submission and messaging feedback, the structure allows for database-backed storage via MeetupSignup.
 
@@ -222,7 +220,7 @@ Secure data handling
 
 Maintainable application logic
 
-🔁 CRUD Functionality
+CRUD Functionality:
 
 (LO2.2)
 
@@ -248,6 +246,7 @@ Content preview
 Associated comments
 
 Clicking into a story reveals full content.
+
 
 Update
 
@@ -279,7 +278,8 @@ Users may delete only their own comments via the delete_comment view.
 
 Permission checks ensure users cannot modify other users’ content.
 
-🔐 Authentication & Access Control
+
+Authentication & Access Control:
 
 (LO3)
 
@@ -311,7 +311,8 @@ Comment deletion
 
 Unauthenticated users attempting restricted actions are redirected and shown clear feedback messages.
 
-💬 User Notifications
+
+User Notifications:
 
 (LO2.3)
 
@@ -329,7 +330,8 @@ Permission denial notifications
 
 This improves usability and ensures users are always informed of the outcome of their actions.
 
-🧠 Custom Python Logic & Code Quality
+
+Custom Python Logic & Code Quality:
 
 (LO1.4)
 
@@ -395,12 +397,243 @@ Access control ensures that users cannot edit or delete content created by other
 
 
 ## Forms & Validation (LO2.4)
+Open Ocean Collective implements structured forms for creating and editing stories, ensuring both usability and data integrity.
+
+Story Creation Form
+
+The Create Story form allows authenticated users to submit their surfing experiences. The form includes:
+
+Story Title (required)
+
+Author Name (required)
+
+Story Content (required)
+
+Image URL (optional, URL field)
+
+Client-side validation is implemented using HTML5 required attributes, preventing submission if mandatory fields are empty. The type="url" input ensures the image field accepts only valid URL formats.
+
+Additionally, CSRF protection is implemented using Django’s {% csrf_token %}, ensuring secure form submission.
+
+Server-Side Validation
+
+Server-side validation is handled within the Django view to ensure data integrity even if client-side validation is bypassed.
+
+Validation includes:
+
+Checking that required fields (title, author, content) are present.
+
+Preventing empty submissions using conditional checks.
+
+Displaying appropriate success or error messages using Django’s messages framework.
+
+If validation fails, users receive clear and informative feedback such as:
+
+“Please fill in all required fields.”
+
+“Comment cannot be empty.”
+
+Edit Story Form
+
+The Edit Story form allows users to update their own stories.
+
+Validation includes:
+
+Required title and content fields
+
+Optional image URL field
+
+Permission checks ensuring only the original author can edit the story
+
+If a user attempts to edit a story they do not own, they are redirected with an error message, ensuring secure access control.
+
+Comment Validation
+
+When submitting comments:
+
+Users must be logged in.
+
+Empty comments are prevented using .strip() validation.
+
+Clear feedback is provided for both successful and invalid submissions.
+
+Accessibility & UX Considerations
+
+Forms were designed with:
+
+Clear labels linked to input fields
+
+Help text to guide users
+
+Logical field grouping
+
+Responsive layout for mobile and desktop
+
+High-contrast focus states for accessibility
+
+This ensures the forms are user-friendly, accessible, and aligned with UX design principles.
 
 ## User Notifications (LO2.3)
 
+Open Ocean Collective implements real-time user feedback using Django’s built-in messages framework within the Django framework.
+
+Notifications are triggered whenever a user performs an action that changes data within the application.
+
+Actions That Trigger Notifications
+
+Users receive clear feedback messages for:
+
+Successful login and logout
+
+Account registration
+
+Story creation
+
+Story updates
+
+Story deletion
+
+Comment submission
+
+Comment updates
+
+Comment deletion
+
+Invalid form submissions
+
+Permission denial attempts
+
+Examples of Notifications
+
+“Your story has been posted! Thank you for sharing your journey.”
+
+“Your comment has been updated!”
+
+“You can only edit your own stories.”
+
+“Comment cannot be empty.”
+
+“You must be logged in to comment.”
+
+Implementation Approach
+
+Notifications are implemented using:
+
+messages.success() for successful actions
+
+messages.error() for validation or permission errors
+
+messages.warning() for minor input issues
+
+Messages are displayed dynamically within templates using conditional logic, ensuring users receive immediate and relevant feedback.
+
+Purpose & UX Impact
+
+The notification system improves:
+
+Transparency of system actions
+
+User confidence when submitting content
+
+Error clarity
+
+Overall usability and engagement
+
+By providing instant and contextual feedback, the application ensures users are always informed about the outcome of their actions.
+
 ## Authentication, Authorisation & Access Control (LO3)
+User registration is handled using Django Allauth, allowing users to securely create accounts.
+
+Features include:
+
+Secure password handling
+
+Form validation during signup
+
+Success messages upon registration
+
+Custom login view using authenticate() and auth_login()
+
+Logout functionality using auth_logout()
+
+Clear feedback messages are provided for:
+
+Successful login
+
+Invalid credentials
+
+Successful logout
+
+This ensures a user-friendly and secure authentication process.
+
+2️⃣ Reflecting Login State (LO3.2)
+
+The application dynamically reflects a user’s login state across pages.
+
+Logged-in users can create stories and post comments.
+
+Logged-out users are redirected if attempting restricted actions.
+
+Navigation and content rendering adapt based on authentication status.
+
+Success and error messages clearly indicate login status changes.
+
+For example:
+
+Unauthenticated users attempting to comment are redirected to the login page.
+
+Users see confirmation when successfully logged in or logged out.
+
+This ensures transparency and clarity regarding session state.
+
+3️⃣ Access Control & Permissions (LO3.3)
+
+Access control is enforced using:
+
+@login_required decorators
+
+Conditional permission checks inside views
+
+Redirects with error messages for unauthorised actions
+
+Restricted actions include:
+
+Creating a story
+
+Editing a story
+
+Deleting a story
+
+Editing a comment
+
+Deleting a comment
+
+Additional permission checks ensure that:
+
+Users can only edit their own stories
+
+Users can only delete their own stories
+
+Users can only edit or delete their own comments
+
+If a user attempts to modify content they do not own, they are redirected and shown an appropriate error message.
+
+Security Considerations
+
+The system ensures:
+
+No unauthenticated access to restricted views
+
+Proper handling of user credentials
+
+Secure session management
+
+Protection against CSRF attacks via {% csrf_token %}
+
+This implementation meets the requirement for secure role-based access and controlled content management within the application.
 
 ## Code Quality & Custom Logic (LO1.4)
+
 
 ## Testing (LO4)
 
