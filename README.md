@@ -643,14 +643,153 @@ Light house testing was carried out to  verify the load times of each page. Phot
 
 Landing page (index.html): 
 
-[photo
+[photo of index.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208167/Screenshot_2026-02-27_at_12.01.57_qvfxb6.png)
+
+Homepage (homepage.html)
+
+[photo homepage.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.06.42_hob23y.png)
+
+Surf trips (surftrips.html) 
+
+[photo of surftrips.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.06.42_hob23y.png)
+
+Stories (stories.html)
+
+[photo of stories.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.10.25_xnh0eu.png)
+
+
+-The lighthouse reports should that each page load average performance was about 80, which if could be pushed up by rendering smaller image files to cloudinary. 
+
+W3 code validator was used, code had to be adapted from django as it wasn't recognised and then changed back before pushing to github. 
 
 ## Version Control & GitHub (LO5)
+The Open Ocean Collective project was developed using Git for version control and hosted on GitHub. All major features and incremental improvements were tracked through descriptive commits, ensuring a clear history of development progress.
+
+Key Commits
+
+3502e1d – Added the ability for users to edit and delete their own stories
+
+c4b1bb2 – Added static story images and styled them
+
+8838613 – Updated functionality to user stories
+
+c1bbde2 – Added styled logout page, enabled username requirement, and implemented sessionStorage for trip sign-ups
+
+These commits demonstrate incremental development, feature additions, and bug fixes, reflecting a structured workflow.
+
+Secure Code Management
+
+To protect sensitive information:
+
+A .gitignore file was used to exclude configuration files containing secret keys and environment-specific settings.
+
+Environment variables manage sensitive data in Django, for example:
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+
+No passwords, API keys, or other sensitive information were committed to the repository.
+
+This approach ensures both traceable development and secure code management, aligning with best practices for professional web applications.
+
 
 ## Deployment (LO6)
+The Open Ocean Collective application was deployed to Heroku, a cloud-based platform that allows Django applications to run in a live environment. The deployment process ensures that the live version matches the development version in functionality and design.
+
+Deployment Steps
+
+Prepare the Project for Deployment
+
+Installed gunicorn for serving the Django application.
+
+Configured Procfile with the command to start the web server:
+
+web: gunicorn open_ocean_collective.wsgi
+
+Set ALLOWED_HOSTS in settings.py to include the Heroku app domain.
+
+Ensured DEBUG = False for production.
+
+Configure Static Files
+
+Used whitenoise to serve static files efficiently.
+
+Collected static files with:
+
+python manage.py collectstatic
+
+Manage Sensitive Data
+
+All secret keys and environment-specific variables were stored using Heroku Config Vars.
+
+.env files and secrets were excluded from Git using .gitignore.
+
+Push to Heroku
+
+Created a Heroku app:
+
+heroku create open-ocean-collective
+
+Added Heroku remote and pushed code:
+
+git push heroku main
+
+Apply Migrations and Seed Data
+
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser  # optional
+
+Verify Deployment
+
+Checked that all pages, story uploads, comments, and meet-up information function correctly.
+
+Confirmed that the live version matches the development environment.
+
+Live Application
+
+Open Ocean Collective – Live App Link: https://open-ocean-d8a90c6a47f1.herokuapp.com/
 
 ## AI Tools Reflection (LO8)
+During the development of Open Ocean Collective, AI tools were strategically leveraged to support code creation, debugging, optimization, and testing, improving both efficiency and code quality.
+
+Code Creation
+
+VS Code integrated with Claude 4.33 and ChatGPT was used to generate boilerplate code for Django models, views, and templates. This allowed rapid implementation of key features, such as story uploads, commenting functionality, and meet-up pages, while ensuring alignment with project objectives. The AI suggestions were reviewed and adapted to match the application’s specific requirements.
+
+Debugging
+
+AI tools assisted in identifying and resolving coding issues, including migration errors, session handling bugs, and template rendering problems. ChatGPT provided explanations for error messages and suggested corrective measures, reducing development time and improving reliability.
+
+Performance and UX Optimisation
+
+AI suggestions were used to improve database query efficiency and front-end responsiveness. For example, template loops and querysets were optimized for faster page loads, and responsive layouts were refined based on AI-guided recommendations.
+
+Automated Testing
+
+GitHub Copilot generated initial Django unit test templates for core functionalities, including story creation, comment submission, and meet-up listing. These AI-generated tests were reviewed and adjusted to ensure accuracy and completeness, contributing to robust test coverage across the application.
+
+Workflow Reflection
+
+Overall, AI tools enhanced the development workflow by reducing repetitive coding tasks, assisting with debugging, and suggesting optimisations. They allowed more focus on design decisions, user experience, and project logic, ultimately improving efficiency and the quality of the final product.
 
 ## Technologies Used
 
-## Credits
+The Open Ocean Collective project was developed using a combination of modern web development and productivity tools. Git and GitHub were used for version control and collaborative code management, while VS Code served as the primary code editor. AI tools, including Claude 4.33 and ChatGPT, assisted in code generation, debugging, and optimisation, as well as creating unit tests with GitHub Copilot. Finally, the application was deployed to the cloud using Heroku, ensuring a secure, live version of the project accessible to users.
+
+## Reflection, learning and future implimentations: 
+
+This was my first full Django project as I previously struggled with the walkthrough project so looking back I was happy to have a working project and something to submit! On reflection there is a few things I would of done differently: 
+
+1.Ask peers/ tutors for more help and guidance: It took me a lot of attempts to set up a simple deployed site to Heroku, which took a large chunk of time out from actually building the project. 
+
+2.Fully validate all the code through a validator to make sure there are no code errors. 
+
+3. Have a stronger understanding of Python whilst buildiong a Django project.
+
+4. Name folders correctly - the main project folder is in 'Hello World'
+
+5. Add addtional user fuctionality to the surftrips.html page.
+
+6. Get peer reviewed on the idea before starting to code- could save a lot of time.
+
+I'm looking forward to the next Django project to impliment these. 
