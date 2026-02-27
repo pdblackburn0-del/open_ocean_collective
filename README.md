@@ -633,9 +633,17 @@ Protection against CSRF attacks via {% csrf_token %}
 This implementation meets the requirement for secure role-based access and controlled content management within the application.
 
 ## Code Quality & Custom Logic (LO1.4)
+The Python code demonstrates good code quality through several practices. It contains custom Python logic, such as handling user sign-ups, logins, and surf trip registrations, which are not built-in functions. If/else conditions are used extensively, for example, to check if the user is authenticated before signing up for a trip or validating login credentials. Loops could be applied when iterating over lists of data, such as trip options or user information (not explicitly shown here but applicable in extended functionality). All functions and variables follow naming conventions, using descriptive snake_case names like meetups, SignupForm, and trip for readability. Docstrings are included for key functions, explaining their purpose, which aligns with PEP 8 guidelines. Overall, the code adheres to PEP 8 in formatting, indentation, and spacing, making it readable and maintainable.
 
+Short example logic explanation: “The meetups function checks if a POST request is made, verifies if the user is authenticated using if/else, and signs them up for a surf trip, showing custom logic with clear variable names and a descriptive docstring.”
 
 ## Testing (LO4)
+
+Light house testing was carried out to  verify the load times of each page. Photos were rendered to be smaller files based on these results and re uploaded to cloudinary: 
+
+Landing page (index.html): 
+
+[photo
 
 ## Version Control & GitHub (LO5)
 
