@@ -34,21 +34,38 @@ Navigating back to the homepage or other sections
 
 This flow chart helped ensure a logical, intuitive navigation, reducing confusion for users and improving overall usability. I didn't end up implimenting user profiles as it became overcomplicated and wasn't nessesary for the MVP. 
 
-Wireframes
+Wireframes: 
 
 Wireframes were designed for the main pages of the application to plan layout, structure, and user interactions:
 
 Homepage: Highlights featured stories and upcoming meet-ups
 
-Story Page: Displays full story text, allows users to comment
+[Screenshot of homepage wireframe] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772203565/Screenshot_2026-02-27_at_14.44.20_vievaf.png)
 
-Meet-ups Page: Lists events in London, Bristol, and Cardiff
+Story Page: Displays full story text, allows users to comment, edit and delete thier comments
+ 
+[Screenshot of story page wirframe] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772203573/Screenshot_2026-02-27_at_14.44.59_fpwgyk.png)
 
-Navigation Bar: Provides easy access to all main sections
+Surf Trips Page: Users can sign on for a surf trip which gets sent to the admin page. 
 
-Wireframes guided the front-end implementation, ensuring consistent spacing, hierarchy, and responsiveness across devices. Changes made during development—such as rearranging story previews or adjusting comment placement—were informed by usability testing and visual clarity.
+[Screenshot of surf trip page wireframe] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772203571/Screenshot_2026-02-27_at_14.44.49_l4xtvv.png)
+
+Log in
+
+[Screenshot of log in page wireframe] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772203566/Screenshot_2026-02-27_at_14.44.32_sxf4ke.png)
+
+Sign Up
+
+[Screenshot of sign up page wireframe] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772203566/Screenshot_2026-02-27_at_14.44.39_o2rcpp.png)
+
+Story creation
+
+[Screenshot of upload story page wirefame] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772203565/Screenshot_2026-02-27_at_14.45.36_ylqrqq.png)
+
 
 ## Agile Methodology (LO1.3)
+
+
 
 ## Database Design & Development (LO1.2, LO2.1, LO7.1)
 
