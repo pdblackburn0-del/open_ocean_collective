@@ -1,5 +1,7 @@
 # Open Ocean Collective
 
+# Please Scroll to the bottom of the Readme to see the points addressed that the original submission failed on
+
 ## Project Overview
 Surfing in the UK is often perceived as:
 
