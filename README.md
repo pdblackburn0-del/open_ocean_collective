@@ -793,3 +793,13 @@ This was my first full Django project as I previously struggled with the walkthr
 6. Get peer reviewed on the idea before starting to code- could save a lot of time.
 
 I'm looking forward to the next Django project to impliment these. 
+
+## Adressing the points the project failed on for Re- Evaluation:
+
+# PEP8 Requirements 
+All python code now adhears to PEP8 Requirements 
+
+# LO4: Testing: 
+
+
+
