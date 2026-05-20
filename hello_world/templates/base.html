@@ -15,22 +15,21 @@
     
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/font.css' %}">
     
     {% block extra_css %}{% endblock %}
 </head>
 <body class="d-flex flex-column min-vh-100">
 
 <!-- ================= NAVBAR ================= -->
-<header class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom" style="min-height: 70px;">
-    <nav class="container-fluid px-4" style="min-height: 70px; ">
+<header class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom">
+    <nav class="container-fluid px-4">
         
         <!-- Logo -->
         <a class="navbar-brand fw-bold d-flex align-items-center"
            href="{% url 'hello_world:index' %}"
            style="height: 100px;">
             <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771788162/01ooc-logo_rschle.png"
-                 alt="Open Ocean Collective"
+                 alt="Open Ocean Collective logo"
                  height="170"
                  class="me-3">
         </a>
@@ -39,7 +38,10 @@
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -117,7 +119,7 @@
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer class="footer bg-dark text-light py-4">
+<footer class="footer">
     <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
         
         <!-- Copyright -->
@@ -142,49 +144,7 @@
     </div>
 </footer>
 
-<style>
-/* ================= FOOTER STYLING ================= */
-.footer {
-    font-family: 'Helvetica Neue', sans-serif;
-    background-color: #0b0c10; /* deep dark ocean vibe */
-    color: #dcdcdc;
-    font-size: 2rem;
-}
 
-.footer-copy, .footer-contact {
-    font-family: 'Estonia', cursive;
-    color: #dcdcdc;
-}
-
-.footer-contact a {
-    color: #dcdcdc;
-    text-decoration: none;
-    margin: 0 0.25rem;
-    transition: color 0.3s ease;
-}
-
-.footer-contact a:hover {
-    color: lightblue;
-}
-
-.footer-social a {
-    color: #dcdcdc;
-    transition: color 0.3s ease;
-}
-
-.footer-social a:hover {
-    color: lightblue;
-}
-
-@media (max-width: 768px) {
-    .footer {
-        text-align: center;
-    }
-    .footer-contact, .footer-copy {
-        margin-bottom: 0.5rem;
-    }
-}
-</style>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
