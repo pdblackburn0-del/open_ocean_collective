@@ -768,11 +768,14 @@ python manage.py test
 coverage run manage.py test
 coverage report
 
-Please see the following screenshot for the full report: 
+Please see the following screenshot for the full report and the website coverage operating at 93%: 
 
 ![Coverage Report](static/images/gallery/coverage_report.png)
 
 
+Specific AI generated code was used to fill tests.py in order to produce the coverage report
+
+![tests.py screenshot](static/images/gallery/tests.png)
 
 
 
