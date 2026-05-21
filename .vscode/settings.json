@@ -1,7 +1,6 @@
 {
-    "python-envs.pythonProjects": []
-}
-{
+    "python-envs.pythonProjects": [],
+
     "editor.formatOnSave": true,
 
     "[python]": {
