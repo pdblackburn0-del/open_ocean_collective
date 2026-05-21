@@ -10,8 +10,7 @@ class AuthViewsTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
-            username="testuser",
-            password="password123"
+            username="testuser", password="password123"
         )
 
     # --------------------
@@ -22,19 +21,16 @@ class AuthViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_login_post_valid(self):
-        response = self.client.post("/login/", {
-            "username": "testuser",
-            "password": "password123"
-        })
+        response = self.client.post(
+            "/login/", {"username": "testuser", "password": "password123"}
+        )
         self.assertEqual(response.status_code, 302)
 
     def test_login_post_invalid(self):
-        response = self.client.post("/login/", {
-            "username": "wrong",
-            "password": "wrong"
-        })
+        response = self.client.post(
+            "/login/", {"username": "wrong", "password": "wrong"}
+        )
         self.assertEqual(response.status_code, 200)
-
 
     # --------------------
     # SIGNUP
@@ -49,8 +45,7 @@ class LogoutViewTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
-            username="testuser",
-            password="password123"
+            username="testuser", password="password123"
         )
 
     def test_logout_get(self):
@@ -68,8 +63,7 @@ class MeetupsTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
-            username="testuser",
-            password="password123"
+            username="testuser", password="password123"
         )
 
     def test_meetups_get(self):
@@ -91,15 +85,14 @@ class StoryViewsTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
-            username="testuser",
-            password="password123"
+            username="testuser", password="password123"
         )
 
         self.story = Story.objects.create(
             title="Test Story",
             author="Author",
             content="Content",
-            author_user=self.user
+            author_user=self.user,
         )
 
     # --------------------
@@ -110,55 +103,45 @@ class StoryViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_stories_post_not_logged_in(self):
-        response = self.client.post("/stories/", {
-            "story_type": "test_static",
-            "comment": "hello"
-        })
+        response = self.client.post(
+            "/stories/", {"story_type": "test_static", "comment": "hello"}
+        )
         self.assertEqual(response.status_code, 302)
 
     def test_stories_post_static_comment(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post("/stories/", {
-            "story_type": "rob_static",
-            "comment": "nice story"
-        })
+        response = self.client.post(
+            "/stories/", {"story_type": "rob_static", "comment": "nice story"}
+        )
         self.assertEqual(response.status_code, 302)
 
     def test_stories_post_dynamic_comment(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post("/stories/", {
-            "story_id": self.story.id,
-            "comment": "great story"
-        })
+        response = self.client.post(
+            "/stories/", {"story_id": self.story.id, "comment": "great story"}
+        )
         self.assertEqual(response.status_code, 302)
 
     def test_stories_post_invalid_story(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post("/stories/", {
-            "story_id": 99999,
-            "comment": "test"
-        })
+        response = self.client.post("/stories/", {"story_id": 99999, "comment": "test"})
         self.assertEqual(response.status_code, 404)
+
 
 class StoryCRUDTests(TestCase):
 
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
-            username="testuser",
-            password="password123"
+            username="testuser", password="password123"
         )
 
         self.other_user = User.objects.create_user(
-            username="other",
-            password="password123"
+            username="other", password="password123"
         )
 
         self.story = Story.objects.create(
-            title="Story",
-            author="Author",
-            content="Content",
-            author_user=self.user
+            title="Story", author="Author", content="Content", author_user=self.user
         )
 
     # --------------------
@@ -171,11 +154,9 @@ class StoryCRUDTests(TestCase):
 
     def test_create_story_post(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post("/stories/create/", {
-            "title": "New",
-            "author": "Me",
-            "content": "Hello"
-        })
+        response = self.client.post(
+            "/stories/create/", {"title": "New", "author": "Me", "content": "Hello"}
+        )
         self.assertEqual(response.status_code, 302)
 
     # --------------------
@@ -193,10 +174,10 @@ class StoryCRUDTests(TestCase):
 
     def test_edit_story_post(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post(f"/stories/{self.story.id}/edit/", {
-            "title": "Updated",
-            "content": "Updated content"
-        })
+        response = self.client.post(
+            f"/stories/{self.story.id}/edit/",
+            {"title": "Updated", "content": "Updated content"},
+        )
         self.assertEqual(response.status_code, 302)
 
     # --------------------
@@ -218,21 +199,15 @@ class CommentCRUDTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
-            username="testuser",
-            password="password123"
+            username="testuser", password="password123"
         )
 
         self.story = Story.objects.create(
-            title="Story",
-            author="Author",
-            content="Content",
-            author_user=self.user
+            title="Story", author="Author", content="Content", author_user=self.user
         )
 
         self.comment = Comment.objects.create(
-            story=self.story,
-            user=self.user,
-            content="Nice"
+            story=self.story, user=self.user, content="Nice"
         )
 
     # --------------------
@@ -245,9 +220,9 @@ class CommentCRUDTests(TestCase):
 
     def test_edit_comment_post(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post(f"/comments/{self.comment.id}/edit/", {
-            "content": "Updated"
-        })
+        response = self.client.post(
+            f"/comments/{self.comment.id}/edit/", {"content": "Updated"}
+        )
         self.assertEqual(response.status_code, 302)
 
     # --------------------

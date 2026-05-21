@@ -6,10 +6,10 @@ from allauth.account.forms import SignupForm
 
 from .models import MeetupSignup, Story, Comment
 
-
 # =========================
 # Public Pages
 # =========================
+
 
 def index(request):
     return render(request, "index.html")
@@ -27,6 +27,7 @@ def welcome(request):
 # =========================
 # Authentication
 # =========================
+
 
 def login(request):
     """User login"""
@@ -76,6 +77,7 @@ def logout_view(request):
 # Meetups / Surf Trips
 # =========================
 
+
 def meetups(request):
     """View + signup for surf trips"""
 
@@ -98,6 +100,7 @@ def meetups(request):
 # =========================
 # Stories
 # =========================
+
 
 def stories(request):
     """View stories + handle comments"""
@@ -125,11 +128,7 @@ def stories(request):
         story = get_object_or_404(Story, id=story_id)
 
         if comment_text.strip():
-            Comment.objects.create(
-                story=story,
-                user=request.user,
-                content=comment_text
-            )
+            Comment.objects.create(story=story, user=request.user, content=comment_text)
             messages.success(request, "Your comment has been posted!")
         else:
             messages.warning(request, "Comment cannot be empty.")
@@ -143,6 +142,7 @@ def stories(request):
 # =========================
 # Story CRUD
 # =========================
+
 
 @login_required
 def create_story(request):
@@ -160,7 +160,7 @@ def create_story(request):
                 author=author,
                 content=content,
                 image_url=image_url,
-                author_user=request.user
+                author_user=request.user,
             )
             messages.success(request, "Story created successfully!")
             return redirect("hello_world:stories")
@@ -214,6 +214,7 @@ def delete_story(request, story_id):
 # =========================
 # Comment CRUD
 # =========================
+
 
 @login_required
 def edit_comment(request, comment_id):
