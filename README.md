@@ -639,7 +639,7 @@ The Python code demonstrates good code quality through several practices. It con
 
 Short example logic explanation: “The meetups function checks if a POST request is made, verifies if the user is authenticated using if/else, and signs them up for a surf trip, showing custom logic with clear variable names and a descriptive docstring.”
 
-## Testing (LO4)
+**Testing (LO4)**
 
 Light house testing was carried out to  verify the load times of each page. Photos were rendered to be smaller files based on these results and re uploaded to cloudinary: 
 
@@ -801,7 +801,7 @@ I'm looking forward to the next Django project to impliment these.
 # PEP8 Requirements 
 All python code now adhears to PEP8 Requirements 
 
-# LO4: Testing: 
+
 
 
 
