@@ -744,10 +744,20 @@ I'm looking forward to the next Django project to impliment these.
 
 ## (LO1.4) Code Quality and PEP8 Requirements. 
 
-All python code used has now been run throgh AI to make sure PEP8 requirements are adheared to. 
+Microsoft Black Formatter was installed and every .py was formatted so that PEP8 requirements were adheared to. 
+
+The following code was added to the settings.json file:
+
+
 
 
 **Testing (LO4)**
+
+# Manual testing
+
+Manual tests were carried out on every page of this website to make sure all were working as expected, please see the spreadsheet below: 
+
+![Manaul testing Speadsheet](static/images/gallery/manual_tests.png) 
 
 Automated tests were implemented using Django's built-in testing framework.
 
@@ -758,10 +768,6 @@ The following functionality was tested:
 - Signup page
 - User authentication
 - Protected story creation route
-
-## Running Tests
-
-python manage.py test
 
 ## Coverage
 
