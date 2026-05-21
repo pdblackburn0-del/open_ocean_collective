@@ -333,35 +333,6 @@ Permission denial notifications
 This improves usability and ensures users are always informed of the outcome of their actions.
 
 
-Custom Python Logic & Code Quality:
-
-(LO1.4)
-
-The project includes custom Python logic demonstrating:
-
-Conditional statements (if/else)
-
-Authentication checks
-
-Permission validation
-
-Exception handling (try/except)
-
-Input validation using .strip() to prevent empty submissions
-
-File naming follows consistent lowercase conventions without spaces to ensure cross-platform compatibility.
-
-Code readability was prioritised through:
-
-Clear function naming
-
-Logical view separation
-
-Structured indentation
-
-Descriptive variable names
-
-The project follows the guidelines set out in PEP 8 for Python code style.
 
 
 ## Features & CRUD Functionality (LO2.2)
@@ -634,35 +605,6 @@ Protection against CSRF attacks via {% csrf_token %}
 
 This implementation meets the requirement for secure role-based access and controlled content management within the application.
 
-## Code Quality & Custom Logic (LO1.4)
-The Python code demonstrates good code quality through several practices. It contains custom Python logic, such as handling user sign-ups, logins, and surf trip registrations, which are not built-in functions. If/else conditions are used extensively, for example, to check if the user is authenticated before signing up for a trip or validating login credentials. Loops could be applied when iterating over lists of data, such as trip options or user information (not explicitly shown here but applicable in extended functionality). All functions and variables follow naming conventions, using descriptive snake_case names like meetups, SignupForm, and trip for readability. Docstrings are included for key functions, explaining their purpose, which aligns with PEP 8 guidelines. Overall, the code adheres to PEP 8 in formatting, indentation, and spacing, making it readable and maintainable.
-
-Short example logic explanation: “The meetups function checks if a POST request is made, verifies if the user is authenticated using if/else, and signs them up for a surf trip, showing custom logic with clear variable names and a descriptive docstring.”
-
-**Testing (LO4)**
-
-Light house testing was carried out to  verify the load times of each page. Photos were rendered to be smaller files based on these results and re uploaded to cloudinary: 
-
-Landing page (index.html): 
-
-[photo of index.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208167/Screenshot_2026-02-27_at_12.01.57_qvfxb6.png)
-
-Homepage (homepage.html)
-
-[photo homepage.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.06.42_hob23y.png)
-
-Surf trips (surftrips.html) 
-
-[photo of surftrips.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.06.42_hob23y.png)
-
-Stories (stories.html)
-
-[photo of stories.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.10.25_xnh0eu.png)
-
-
--The lighthouse reports should that each page load average performance was about 80, which if could be pushed up by rendering smaller image files to cloudinary. 
-
-W3 code validator was used, code had to be adapted from django as it wasn't recognised and then changed back before pushing to github. 
 
 ## Version Control & GitHub (LO5)
 The Open Ocean Collective project was developed using Git for version control and hosted on GitHub. All major features and incremental improvements were tracked through descriptive commits, ensuring a clear history of development progress.
@@ -798,8 +740,35 @@ I'm looking forward to the next Django project to impliment these.
 
 ## Adressing the points the project failed on for Re- Evaluation:
 
-# PEP8 Requirements 
-All python code now adhears to PEP8 Requirements 
+## (LO1.4) Code Quality and PEP8 Requirements. 
+
+All python code used has now been run throgh AI to make sure PEP8 requirements are adheared to. 
+
+
+**Testing (LO4)**
+
+Light house testing was carried out to  verify the load times of each page. Photos were rendered to be smaller files based on these results and re uploaded to cloudinary: 
+
+Landing page (index.html): 
+
+[photo of index.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208167/Screenshot_2026-02-27_at_12.01.57_qvfxb6.png)
+
+Homepage (homepage.html)
+
+[photo homepage.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.06.42_hob23y.png)
+
+Surf trips (surftrips.html) 
+
+[photo of surftrips.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.06.42_hob23y.png)
+
+Stories (stories.html)
+
+[photo of stories.html lighthouse report] (https://res.cloudinary.com/dwe00uiuy/image/upload/v1772208166/Screenshot_2026-02-27_at_12.10.25_xnh0eu.png)
+
+
+-The lighthouse reports should that each page load average performance was about 80, which if could be pushed up by rendering smaller image files to cloudinary. 
+
+W3 code validator was used, code had to be adapted from django as it wasn't recognised and then changed back before pushing to github. 
 
 
 
