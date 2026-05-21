@@ -98,22 +98,23 @@ a {
 
     box-shadow: var(--shadow-sm);
 
-    padding: 0.8rem 1rem;
+    padding: 0.1rem 1rem; /* reduce padding if needed */
     min-height: 70px;
+
+    display: flex;
+    align-items: center;
 }
 
-.navbar > nav {
-    min-height: 70px;
-}
 
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 0.5px;
+    height: 170px;
 }
 
 .navbar-brand img {
-    max-height: 70px;
+    max-height: 30px;   /* adjust this instead of navbar-brand */
     width: auto;
 }
 
