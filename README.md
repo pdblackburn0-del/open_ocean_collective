@@ -747,7 +747,38 @@ All python code used has now been run throgh AI to make sure PEP8 requirements a
 
 **Testing (LO4)**
 
-Testing was carried out through tests.py and 
+tests.py: Coverage report;
+
+Automated tests were implemented using Django's built-in testing framework.
+
+The following functionality was tested:
+
+- Homepage loading
+- Login page
+- Signup page
+- User authentication
+- Protected story creation route
+
+## Running Tests
+
+python manage.py test
+
+## Coverage
+
+coverage run manage.py test
+coverage report
+
+Please see the following screenshot for the full report: 
+
+![Coverage Report](static/images/gallery/coverage_report.png)
+
+
+
+
+
+
+
+
 
 
 
