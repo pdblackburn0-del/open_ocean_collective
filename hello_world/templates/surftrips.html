@@ -175,7 +175,8 @@
 
 <!-- Hero Section -->
 <section class="surf-trips-hero">
-    <div class="overlay"></div>
+    <div class="overlay">
+    </div>
     <div class="hero-content">
         <h1>Monthly Surf Trips</h1>
         <p>Join our community for unforgettable waves</p>
@@ -184,8 +185,8 @@
 </section>
 
 <!-- Trips Section -->
-<section id="trips" class="trips-section">
-    <div class="container">
+<section id="trips" class="trips-section, container">
+    
 
         {% if not user.is_authenticated %}
         <div class="auth-message">
@@ -205,14 +206,10 @@
         </div>
 
         <div class="row g-4">
-            <!-- Trip Card 1 -->
-            <div class="container">
-    <div class="row g-4">
-
-        <!-- Cornwall -->
-        <div class="col-md-6 col-lg-3">
-            <div class="trip-card">
-                <div class="trip-image"><img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811712/IMG_6533_3_l3v9ti.jpg" alt="Cornwall"></div>
+            <!-- Cornwall -->
+            <div class="col-md-6 col-lg-3">
+                <div class="trip-card">
+                    <div class="trip-image"><img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811712/IMG_6533_3_l3v9ti.jpg" alt="Cornwall" width="300" height="250" class="trip-image-img"></div>
                 <div class="trip-content">
                     <div class="trip-month">January</div>
                     <h3 class="trip-location">Cornwall</h3>
@@ -224,21 +221,21 @@
                     </div>
 
                     {% if user.is_authenticated %}
-                    <div class="signup-container" style="display: flex; gap: 10px; align-items: stretch;">
-                        <form method="POST" class="signup-btn" style="flex: 1;">
+                    <div class="signup-container">
+                        <form method="post" class="signup-btn signup-form-flex">
                             {% csrf_token %}
                             <input type="hidden" name="trip" value="cornwall-jan">
                             <button 
-                        type="button" 
-                        class="btn btn-dark btn-cta w-100"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#signupModal"
-                        onclick="submitTripForm(this)">
-                        Sign Up for Trip
-                        </button>
+                                type="button" 
+                                class="btn btn-dark btn-cta w-100"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#signupModal"
+                                onclick="submitTripForm(this)">
+                                Sign Up for Trip
+                            </button>
                         </form>
-                        <button class="btn btn-success btn-cta signup-checkmark" style="display: none; width: auto; padding: 0 20px;" disabled>
-                            <i class="fas fa-check" style="font-size: 1.5rem;"></i>
+                        <button class="btn btn-success btn-cta signup-checkmark" disabled>
+                            <i class="fas fa-check check-icon"></i>
                         </button>
                     </div>
                     {% else %}
@@ -253,7 +250,7 @@
         <!-- Bristol - The Wave -->
         <div class="col-md-6 col-lg-3">
             <div class="trip-card">
-                <div class="trip-image"><img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811863/20250811-NV5A5344-Edit-scaled_phtj8h.jpg" alt="Bristol – The Wave"></div>
+                <div class="trip-image"><img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811863/20250811-NV5A5344-Edit-scaled_phtj8h.jpg" alt="Bristol – The Wave" width="300" height="250" class="trip-image-img"></div>
                 <div class="trip-content">
                     <div class="trip-month">February</div>
                     <h3 class="trip-location">Bristol – The Wave</h3>
@@ -265,21 +262,21 @@
                     </div>
 
                     {% if user.is_authenticated %}
-                    <div class="signup-container" style="display: flex; gap: 10px; align-items: stretch;">
-                        <form method="POST" class="signup-btn" style="flex: 1;">
+                    <div class="signup-container">
+                        <form method="post" class="signup-btn signup-form-flex">
                             {% csrf_token %}
                             <input type="hidden" name="trip" value="bristol-feb">
                             <button 
-                            type="button" 
-                            class="btn btn-dark btn-cta w-100"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#signupModal"
-                            onclick="submitTripForm(this)">
-                            Sign Up for Trip
+                                type="button" 
+                                class="btn btn-dark btn-cta w-100"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#signupModal"
+                                onclick="submitTripForm(this)">
+                                Sign Up for Trip
                             </button>
-                           </form>
-                        <button class="btn btn-success btn-cta signup-checkmark" style="display: none; width: auto; padding: 0 20px;" disabled>
-                            <i class="fas fa-check" style="font-size: 1.5rem;"></i>
+                        </form>
+                        <button class="btn btn-success btn-cta signup-checkmark" disabled>
+                            <i class="fas fa-check check-icon"></i>
                         </button>
                     </div>
                     {% else %}
@@ -294,7 +291,7 @@
         <!-- Pembrokeshire -->
         <div class="col-md-6 col-lg-3">
             <div class="trip-card">
-                <div class="trip-image"><img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811843/eeb64526dc34269f03922cd53b76b58d6b4f3de0-3840x2387_ixk3ad.avif" alt="Pembrokeshire"></div>
+                <div class="trip-image"><img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811843/eeb64526dc34269f03922cd53b76b58d6b4f3de0-3840x2387_ixk3ad.avif" alt="Pembrokeshire" width="300" height="250" class="trip-image-img"></div>
                 <div class="trip-content">
                     <div class="trip-month">March</div>
                     <h3 class="trip-location">Pembrokeshire</h3>
@@ -306,21 +303,21 @@
                     </div>
 
                     {% if user.is_authenticated %}
-                    <div class="signup-container" style="display: flex; gap: 10px; align-items: stretch;">
-                        <form method="POST" class="signup-btn" style="flex: 1;">
+                    <div class="signup-container">
+                        <form method="post" class="signup-btn signup-form-flex">
                             {% csrf_token %}
-                        <input type="hidden" name="trip" value="pembrokeshire-mar">
+                            <input type="hidden" name="trip" value="pembrokeshire-mar">
                             <button 
-                            type="button" 
-                            class="btn btn-dark btn-cta w-100"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#signupModal"
-                            onclick="submitTripForm(this)">
-                            Sign Up for Trip
+                                type="button" 
+                                class="btn btn-dark btn-cta w-100"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#signupModal"
+                                onclick="submitTripForm(this)">
+                                Sign Up for Trip
                             </button>
                         </form>
-                        <button class="btn btn-success btn-cta signup-checkmark" style="display: none; width: auto; padding: 0 20px;" disabled>
-                            <i class="fas fa-check" style="font-size: 1.5rem;"></i>
+                        <button class="btn btn-success btn-cta signup-checkmark" disabled>
+                            <i class="fas fa-check check-icon"></i>
                         </button>
                     </div>
                     {% else %}
@@ -335,7 +332,7 @@
         <!-- Croyde, Devon -->
         <div class="col-md-6 col-lg-3">
             <div class="trip-card">
-                <div class="trip-image"><img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811834/home-croyde-900w_sqxcze.jpg" alt="Croyde, Devon"></div>
+                <div class="trip-image"><img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771811834/home-croyde-900w_sqxcze.jpg" alt="Croyde, Devon" width="300" height="250" class="trip-image-img"></div>
                 <div class="trip-content">
                     <div class="trip-month">April</div>
                     <h3 class="trip-location">Croyde, Devon</h3>
@@ -347,22 +344,21 @@
                     </div>
 
                     {% if user.is_authenticated %}
-                    <div class="signup-container" style="display: flex; gap: 10px; align-items: stretch;">
-                        <form method="POST" class="signup-btn" style="flex: 1;">
+                    <div class="signup-container">
+                        <form method="post" class="signup-btn signup-form-flex">
                             {% csrf_token %}
                             <input type="hidden" name="trip" value="croyde-apr">
                             <button 
-                            type="button" 
-                            class="btn btn-dark btn-cta w-100"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#signupModal"
-                            onclick="submitTripForm(this)">
-                            Sign Up for Trip
+                                type="button" 
+                                class="btn btn-dark btn-cta w-100"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#signupModal"
+                                onclick="submitTripForm(this)">
+                                Sign Up for Trip
                             </button>
-                           
                         </form>
-                        <button class="btn btn-success btn-cta signup-checkmark" style="display: none; width: auto; padding: 0 20px;" disabled>
-                            <i class="fas fa-check" style="font-size: 1.5rem;"></i>
+                        <button class="btn btn-success btn-cta signup-checkmark" disabled>
+                            <i class="fas fa-check check-icon"></i>
                         </button>
                     </div>
                     {% else %}
@@ -375,15 +371,11 @@
         </div>
 
     </div>
-</div>
-           
-
-    
 </section>
 <!-- Signup Success Modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="border-radius:20px;">
+    <div class="modal-content modal-content-rounded">
       
       <div class="modal-header border-0">
         <h5 class="modal-title fw-bold" id="signupModalLabel">

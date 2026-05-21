@@ -139,14 +139,14 @@
         <strong>⚠️ Warning:</strong> Deleting this story will remove it from the site permanently, along with all comments on it.
     </div>
 
-    <p style="margin-top: 20px; margin-bottom: 20px;">Are you sure you want to continue?</p>
+    <p class="delete-confirmation-text">Are you sure you want to continue?</p>
 
     <div class="btn-group">
-        <form method="POST" style="display: inline;">
+        <form method="post" class="delete-form-inline">
             {% csrf_token %}
             <button type="submit" class="btn-delete">Yes, Delete Story</button>
         </form>
-        <a href="{% url 'hello_world:stories' %}" class="btn-cancel" style="text-decoration: none; display: inline-block;">Cancel</a>
+        <a href="{% url 'hello_world:stories' %}" class="btn-cancel btn-cancel-link">Cancel</a>
     </div>
 </section>
 {% endblock %}

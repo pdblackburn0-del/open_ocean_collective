@@ -204,7 +204,7 @@ textarea.form-control {
                 We'd love to hear about your surfing journey! Share your experiences, challenges, and triumphs with the Open Ocean Collective community. Your story could inspire someone else to take their first wave.
             </p>
 
-            <form method="POST" action="{% url 'hello_world:create_story' %}">
+            <form method="post" action="{% url 'hello_world:create_story' %}">
                 {% csrf_token %}
 
                 <div class="form-group">

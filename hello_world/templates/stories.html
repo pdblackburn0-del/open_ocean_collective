@@ -314,12 +314,12 @@ textarea.form-control {
                 <i class="fas fa-pen me-2"></i>Write Your Story
             </a>
         {% else %}
-            <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto;">
-                <p style="margin-bottom: 15px; font-family: 'Radley', serif; color: whitesmoke;">
+            <div class="auth-prompt-box">
+                <p class="auth-prompt-text">
                     To share your story, please sign in or create an account first.
                 </p>
-                <a href="{% url 'account_login' %}" class="btn-create-story" style="background: #667eea; color: white; margin-right: 10px;">Sign In</a>
-                <a href="{% url 'account_signup' %}" class="btn-create-story" style="background: white; color: #667eea;">Sign Up</a>
+                <a href="{% url 'account_login' %}" class="btn-create-story btn-auth-signin">Sign In</a>
+                <a href="{% url 'account_signup' %}" class="btn-create-story btn-auth-signup">Sign Up</a>
             </div>
         {% endif %}
     </div>
@@ -334,7 +334,9 @@ textarea.form-control {
             <div class="story-image" role="img" aria-label="Rob riding a wave">
                 <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1772139272/Rob_a9gwqd.png" 
                      alt="Rob riding a wave"
-                     style="max-height: 300px; max-width: 100%; width: auto; object-fit: contain;">
+                     width="300"
+                     height="300"
+                     class="story-image-img">
             </div>
             <div class="story-content">
                 <h2 class="story-title">Rob — Finding Waves</h2>
@@ -355,13 +357,13 @@ textarea.form-control {
                     </h4>
 
                     <div class="comments-list-rob_static">
-                        <p style="color: #999; font-family: 'Radley', serif; margin-bottom: 20px;">No comments yet. Be the first to share your thoughts!</p>
+                        <p class="no-comments-text">No comments yet. Be the first to share your thoughts!</p>
                     </div>
 
                     {% if user.is_authenticated %}
                     <div class="comment-form">
                         <h4>Leave a Comment</h4>
-                        <form method="POST" class="static-story-form">
+                        <form method="post" class="static-story-form">
                             {% csrf_token %}
                             <input type="hidden" name="story_type" value="rob_static">
                             <div class="form-group">
@@ -385,7 +387,9 @@ textarea.form-control {
             <div class="story-image" role="img" aria-label="Maya at sunrise">
                 <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771817513/Sarah_y4zgix.png" 
                      alt="Maya at sunrise"
-                     style="max-height: 300px; max-width: 100%; width: auto; object-fit: contain;">
+                     width="300"
+                     height="300"
+                     class="story-image-img">
             </div>
             <div class="story-content">
                 <h2 class="story-title">Maya — From Fear to Freedom</h2>
@@ -406,13 +410,13 @@ textarea.form-control {
                     </h4>
 
                     <div class="comments-list-maya_static">
-                        <p style="color: #999; font-family: 'Radley', serif; margin-bottom: 20px;">No comments yet. Be the first to share your thoughts!</p>
+                        <p class="no-comments-text">No comments yet. Be the first to share your thoughts!</p>
                     </div>
 
                     {% if user.is_authenticated %}
                     <div class="comment-form">
                         <h4>Leave a Comment</h4>
-                        <form method="POST" class="static-story-form">
+                        <form method="post" class="static-story-form">
                             {% csrf_token %}
                             <input type="hidden" name="story_type" value="maya_static">
                             <div class="form-group">
@@ -436,7 +440,9 @@ textarea.form-control {
             <div class="story-image" role="img" aria-label="Ahmed in the lineup">
                 <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1772140011/Screenshot_2026-02-26_at_21.06.19_u6lomd.png" 
                      alt="Ahmed in the lineup"
-                     style="max-height: 300px; max-width: 100%; width: auto; object-fit: contain;">
+                     width="300"
+                     height="300"
+                     class="story-image-img">
             </div>
             <div class="story-content">
                 <h2 class="story-title">Ahmed — Breaking Barriers</h2>
@@ -457,13 +463,13 @@ textarea.form-control {
                     </h4>
 
                     <div class="comments-list-ahmed_static">
-                        <p style="color: #999; font-family: 'Radley', serif; margin-bottom: 20px;">No comments yet. Be the first to share your thoughts!</p>
+                        <p class="no-comments-text">No comments yet. Be the first to share your thoughts!</p>
                     </div>
 
                     {% if user.is_authenticated %}
                     <div class="comment-form">
                         <h4>Leave a Comment</h4>
-                        <form method="POST" class="static-story-form">
+                        <form method="post" class="static-story-form">
                             {% csrf_token %}
                             <input type="hidden" name="story_type" value="ahmed_static">
                             <div class="form-group">
@@ -488,11 +494,12 @@ textarea.form-control {
             <div class="story-image">
                 {% if story.image_url %}
                 <img src="{{ story.image_url }}" 
-                     alt="{{ story.title }}" 
-                     class="story-img" 
-                     style="max-height: 300px; max-width: 100%; width: auto; object-fit: contain;">
+                     alt="{{ story.title }}"
+                     width="300"
+                     height="300"
+                     class="story-img story-image-img">
                 {% else %}
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                <div class="story-placeholder">
                     📖
                 </div>
                 {% endif %}
@@ -500,13 +507,13 @@ textarea.form-control {
             <div class="story-content">
                 <h2 class="story-title">{{ story.title }}</h2>
                 <p class="story-meta">By {{ story.author }} • {{ story.created_at|date:"F d, Y" }}</p>
-                
+
                 {% if user.is_authenticated and user == story.author_user %}
-                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <a href="{% url 'hello_world:edit_story' story.id %}" class="btn-story-action" style="background: #667eea; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-family: 'Radley', serif; font-size: 0.9rem; display: inline-block; transition: all 0.3s;">
+                <div class="story-actions-container">
+                    <a href="{% url 'hello_world:edit_story' story.id %}" class="btn-story-action-edit">
                         <i class="fas fa-edit"></i> Edit
                     </a>
-                    <a href="{% url 'hello_world:delete_story' story.id %}" class="btn-story-action" style="background: #d32f2f; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-family: 'Radley', serif; font-size: 0.9rem; display: inline-block; transition: all 0.3s;">
+                    <a href="{% url 'hello_world:delete_story' story.id %}" class="btn-story-action-delete">
                         <i class="fas fa-trash"></i> Delete
                     </a>
                 </div>
@@ -525,17 +532,17 @@ textarea.form-control {
                     {% if story.comments.exists %}
                         {% for comment in story.comments.all %}
                         <div class="comment" id="comment-{{ comment.id }}">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <div class="comment-header">
                                 <div>
                                     <div class="comment-author">{{ comment.user.username }}</div>
                                     <div class="comment-date">{{ comment.created_at|date:"F d, Y" }}</div>
                                 </div>
                                 {% if user.is_authenticated and user == comment.user %}
-                                <div style="display: flex; gap: 8px;">
-                                    <button class="edit-btn" data-comment-id="{{ comment.id }}" style="background: none; border: none; color: #667eea; text-decoration: none; font-size: 0.85rem; cursor: pointer; transition: color 0.3s;">
+                                <div class="comment-actions">
+                                    <button class="edit-btn" data-comment-id="{{ comment.id }}">
                                         <i class="fas fa-edit"></i> Edit
                                     </button>
-                                    <a href="{% url 'hello_world:delete_comment' comment.id %}" style="color: #d32f2f; text-decoration: none; font-size: 0.85rem; transition: color 0.3s;">
+                                    <a href="{% url 'hello_world:delete_comment' comment.id %}" class="delete-btn">
                                         <i class="fas fa-trash"></i> Delete
                                     </a>
                                 </div>
@@ -543,13 +550,13 @@ textarea.form-control {
                             </div>
                             <div class="comment-text comment-display-{{ comment.id }}">{{ comment.content }}</div>
                             {% if user.is_authenticated and user == comment.user %}
-                            <div class="comment-edit-form-{{ comment.id }}" style="display: none; margin-top: 15px;">
-                                <textarea class="form-control comment-edit-textarea-{{ comment.id }}" style="min-height: 100px; margin-bottom: 10px;">{{ comment.content }}</textarea>
-                                <div style="display: flex; gap: 10px;">
-                                    <button class="save-comment-btn" data-comment-id="{{ comment.id }}" style="background: #667eea; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-family: 'Radley', serif;">
+                            <div class="comment-edit-form comment-edit-form-{{ comment.id }}">
+                                <textarea class="form-control comment-edit-textarea comment-edit-textarea-{{ comment.id }}">{{ comment.content }}</textarea>
+                                <div class="comment-edit-buttons">
+                                    <button class="save-comment-btn" data-comment-id="{{ comment.id }}">
                                         <i class="fas fa-check"></i> Save
                                     </button>
-                                    <button class="cancel-comment-btn" data-comment-id="{{ comment.id }}" style="background: #e0e0e0; color: #333; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-family: 'Radley', serif;">
+                                    <button class="cancel-comment-btn" data-comment-id="{{ comment.id }}">
                                         <i class="fas fa-times"></i> Cancel
                                     </button>
                                 </div>
@@ -558,13 +565,13 @@ textarea.form-control {
                         </div>
                         {% endfor %}
                     {% else %}
-                        <p style="color: #999; font-family: 'Radley', serif; margin-bottom: 20px;">No comments yet. Be the first to share your thoughts!</p>
+                        <p class="no-comments-text">No comments yet. Be the first to share your thoughts!</p>
                     {% endif %}
 
                     {% if user.is_authenticated %}
                     <div class="comment-form">
                         <h4>Leave a Comment</h4>
-                        <form method="POST" action="{% url 'hello_world:stories' %}">
+                        <form method="post" action="{% url 'hello_world:stories' %}">
                             {% csrf_token %}
                             <input type="hidden" name="story_id" value="{{ story.id }}">
                             <div class="form-group">
