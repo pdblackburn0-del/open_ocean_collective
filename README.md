@@ -747,6 +747,11 @@ All python code used has now been run throgh AI to make sure PEP8 requirements a
 
 **Testing (LO4)**
 
+Testing was carried out through tests.py and 
+
+
+
+
 Light house testing was carried out to  verify the load times of each page. Photos were rendered to be smaller files based on these results and re uploaded to cloudinary: 
 
 Landing page (index.html): 
