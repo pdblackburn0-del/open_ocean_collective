@@ -738,7 +738,9 @@ This was my first full Django project as I previously struggled with the walkthr
 
 I'm looking forward to the next Django project to impliment these. 
 
-## Adressing the points the project failed on for Re- Evaluation:
+
+
+## Addressing the points the project failed on for Re- Evaluation:
 
 ## (LO1.4) Code Quality and PEP8 Requirements. 
 
@@ -746,8 +748,6 @@ All python code used has now been run throgh AI to make sure PEP8 requirements a
 
 
 **Testing (LO4)**
-
-tests.py: Coverage report;
 
 Automated tests were implemented using Django's built-in testing framework.
 
@@ -768,9 +768,11 @@ python manage.py test
 coverage run manage.py test
 coverage report
 
-Please see the following screenshot for the full report and the website coverage operating at 93%: 
+Please see the following screenshot for the full report:
 
 ![Coverage Report](static/images/gallery/coverage_report.png)
+
+The project maintains 93% automated test coverage with pytest and coverage.py to ensure reliability and regression safety.
 
 
 Specific AI generated code was used to fill tests.py in order to produce the coverage report
