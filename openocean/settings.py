@@ -71,6 +71,8 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "django_summernote",
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
