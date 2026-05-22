@@ -773,7 +773,7 @@ All identified issues were systematically corrected, resulting in:
 ```bash
 Linted 15 files, found 0 errors.
 
-![Linting test showing no errors](static/images/gallery/djlint_noerrors.png)
+![linting showing no errors](static/images/gallery/djlint_noerrors.png) 
 
 
 **Testing (LO4)**
