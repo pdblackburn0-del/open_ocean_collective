@@ -770,7 +770,6 @@ Initial testing identified **89 linting errors** across the application template
 
 All identified issues were systematically corrected, resulting in:
 
-```bash
 Linted 15 files, found 0 errors.
 
 ![linting showing no errors](static/images/gallery/djlint_noerrors.png) 
