@@ -882,5 +882,10 @@ W3 code validator was used, code had to be adapted from django as it wasn't reco
 
 
 
+# Javascript code testing
+
+The quality of the javascript on stories.html was tested using an online code checker, please see the following screenshot:
+
+![Javascript code test](static/images/gallery/javascriptcodechecker.png)
 
 
