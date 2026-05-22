@@ -742,13 +742,38 @@ I'm looking forward to the next Django project to impliment these.
 
 ## Addressing the points the project failed on for Re- Evaluation:
 
-## (LO1.4) Code Quality and PEP8 Requirements. 
+## (LO1.4) PEP8 Requirements: 
 
 Microsoft Black Formatter was installed and every .py was formatted so that PEP8 requirements were adheared to. 
 
-The following code was added to the settings.json file:
+The following code was added to the settings.json file: 
+
+![Setting.Json Screenshot](static/images/gallery/settings.png)
+
+Following this 'option + shift + f' was used on every .py file which automatically formatted all python code. 
 
 
+# (L01.4) HTML Code quality checker using linting: 
+
+### HTML Validation & Linting
+
+HTML validation and template linting were carried out using **djLint** within VS Code to ensure clean, consistent, and accessible Django template structure throughout the project.
+
+Initial testing identified **89 linting errors** across the application templates, including:
+- orphaned tags
+- incorrect nesting
+- inline styling issues
+- spacing and formatting inconsistencies
+- accessibility and semantic HTML warnings
+
+![linting failure screenshot](static/images/gallery/lint_errors.png)
+
+All identified issues were systematically corrected, resulting in:
+
+```bash
+Linted 15 files, found 0 errors.
+
+![Linting test showing no errors](static/images/gallery/djlint_noerrors.png)
 
 
 **Testing (LO4)**
@@ -758,6 +783,8 @@ The following code was added to the settings.json file:
 Manual tests were carried out on every page of this website to make sure all were working as expected, please see the spreadsheet below: 
 
 ![Manaul testing Speadsheet](static/images/gallery/manual_tests.png) 
+
+# Django Automated Tests
 
 Automated tests were implemented using Django's built-in testing framework.
 
@@ -793,7 +820,7 @@ Specific AI generated code was used to fill tests.py in order to produce the cov
 
 
 
-
+# Light house reports: 
 Light house testing was carried out to  verify the load times of each page. Photos were rendered to be smaller files based on these results and re uploaded to cloudinary: 
 
 Landing page (index.html): 
