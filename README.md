@@ -758,7 +758,7 @@ homepage.html:
 
 surftrips.html:
 
-![surftrips.html code check](static/images/gallery/w3codechecksurftrips.png)
+![surftrips.html code check](static/images/gallery/w3codechecksurftripshtml.png)
 
 index.html:
 
