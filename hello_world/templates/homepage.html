@@ -1,10 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Home - Open Ocean Collective{% endblock %}
 
-{% load static %}
-<head>
-{% block content %}
+{% block extra_css %}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Estonia&family=Radley:ital@0;1&display=swap');
 
@@ -55,22 +54,16 @@
     padding: 10px 60px;
 }
 
-.auth-buttons {
-    margin-top: 60px;
-}
-
 .hero-logo {
     max-width: 450px;
     height: auto;
 }
+
 .lead {
     font-family: 'Radley', serif;
     color: #333333;
 }
-.py-5 {
-    background-color: antiquewhite;
-}
-/* Mobile background swap */
+
 @media (max-width: 768px) {
     .hero {
         background: url("https://res.cloudinary.com/dwe00uiuy/image/upload/v1771621102/hero_image_ib3zui.png")
@@ -82,54 +75,47 @@
     }
 }
 </style>
+{% endblock %}
 
-</head>
-
+{% block content %}
 
 <section class="hero">
     <div class="overlay"></div>
 
     <div class="hero-content">
-        
-
         <p>The Ocean is open to all</p>
 
         <div>
-            <a href="#our-mission" 
-               class="btn btn-dark btn-cta enter-btn">
-               Our mission
+            <a href="#our-mission" class="btn btn-dark btn-cta enter-btn">
+                Our mission
             </a>
         </div>
-
     </div>
 </section>
 
-<!-- MISSION -->
 <section id="our-mission" class="py-5">
     <div class="container">
         <div class="row align-items-center">
-            
-            <!-- Text -->
+
             <div class="col-md-5">
                 <h2 class="mb-4">Our Mission</h2>
                 <p class="lead">
-                At Open Ocean Collective, we are dedicated to championing diversity in British surfing. We believe that the ocean should be a welcoming space for everyone, regardless of background, identity, or experience level. Our mission is to provide inclusive opportunities for all surfers and aspiring surfers and change the space of British surfing. We run monthly surf trips from London to exciting British surf destinations including Devon, Cornwall, Pembrokeshire, and The Wave at Bristol, ensuring that everyone has access to world‑class waves and unforgettable experiences in a supportive, welcoming environment. We'd love to welcome you to our next surf trip so please 
-                <a href="{% url 'account_signup' %}" class="fw-bold text‑decoration‑underline">
-                    sign up
-                </a> 
-                to get involved!
-            </p>
-        </div>
-            <!-- Image -->
-            <div class="col-md-7 text-center">
-                <img 
-                    src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771421138/175b01cf-39d8-4018-8041-d2e23fa33386_xqkkj3.png" 
-                    alt="Inclusive British surfing community"
-                    width="600"
-                    height="400"
-                    class="img-fluid rounded shadow"
-                >
+                    At Open Ocean Collective, we are dedicated to championing diversity in British surfing...
+                    We run monthly surf trips across the UK.
+                    We'd love to welcome you to our next surf trip so please
+                    <a href="{% url 'account_signup' %}" class="fw-bold text-decoration-underline">
+                        sign up
+                    </a>
+                    to get involved!
+                </p>
             </div>
+
+            <div class="col-md-7 text-center">
+                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1771421138/175b01cf-39d8-4018-8041-d2e23fa33386_xqkkj3.png"
+                     alt="Inclusive British surfing community"
+                     class="img-fluid rounded shadow">
+            </div>
+
         </div>
     </div>
 </section>
@@ -138,30 +124,25 @@
     <div class="container">
         <div class="row align-items-center">
 
-            <!-- Image -->
             <div class="col-md-7 text-center">
-                <img 
-                    src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1772032293/IMG_9174_tx43fl.jpg" 
-                    alt="Monthly surf trips from London"
-                    width="600"
-                    height="400"
-                    class="img-fluid rounded shadow"
-                >
+                <img src="https://res.cloudinary.com/dwe00uiuy/image/upload/v1772032293/IMG_9174_tx43fl.jpg"
+                     alt="Monthly surf trips from London"
+                     class="img-fluid rounded shadow">
             </div>
 
-            <!-- Text -->
             <div class="col-md-5">
                 <h2 class="mb-4">Our Surf Trips</h2>
                 <p class="lead">
-                Experience the best of British waves with Open Ocean Collective's monthly surf trips departing from London. Whether you're a seasoned surfer or just beginning your wave-riding journey, our carefully curated trips showcase the diverse and stunning coastal regions across the UK. From the consistent, powerful breaks of Cornwall to the hidden gems of Devon, the rugged beauty of Pembrokeshire, and the innovative indoor waves at The Wave Bristol, each destination offers something unique. Our trips are designed to foster community, build friendships, and create lasting memories whilst surfing in supportive, inclusive spaces. Join us as we explore incredible destinations and discover why the British coastline is home to some of Europe's most exciting surf. Ready for your next adventure?
-                <a href="{% url 'hello_world:meetups' %}" class="fw-bold text-decoration-underline">
-                    Check out our upcoming trips
-                </a> 
-                and book your spot today!
-            </p>
-        </div>
+                    Experience the best of British waves with Open Ocean Collective...
+                    <a href="{% url 'hello_world:meetups' %}" class="fw-bold text-decoration-underline">
+                        Check out our upcoming trips
+                    </a>
+                    and book your spot today!
+                </p>
+            </div>
 
         </div>
     </div>
 </section>
+
 {% endblock %}
