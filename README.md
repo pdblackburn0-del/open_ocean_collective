@@ -756,6 +756,30 @@ homepage.html:
 
 ![homepage.hmtl code check screenshot](static/images/gallery/w3checkhomepagehtml.png)
 
+surftrips.html:
+
+![surftrips.html code check](static/images/gallery/w3codechecksurftrips.png)
+
+index.html:
+
+![index.html code check](static/images/gallery/w3index.png)
+
+login.html: 
+
+![login.html code check](static/images/gallery/w3login.png)
+
+signup.html:
+
+![signup.html code check](static/images/gallery/w3signup.png)
+
+logout.html:
+
+![logout.html code check](static/images/gallery/w3logout.png)
+
+stories.html:
+
+![stories.html code check](static/images/gallery/w3storieshtml.png)
+
 ## (LO1.4) PEP8 Requirements: 
 
 Microsoft Black Formatter was installed and every .py was formatted so that PEP8 requirements were adheared to. 
