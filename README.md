@@ -888,4 +888,10 @@ The quality of the javascript on stories.html was tested using an online code ch
 
 ![Javascript code test](static/images/gallery/javascriptcodechecker.png)
 
+In addition, manual tests on surftrips.html were carried out - Once a user signs up for a trip a module pops up, then the option to "sign-up" disapears for that particular trip showing the java script working as it should: 
+
+![screenshot of javascript functionality](https://res.cloudinary.com/dwe00uiuy/image/upload/v1779450261/jsmanual2_hv2ywt.png)
+![screenshot2 of javascript functionality](https://res.cloudinary.com/dwe00uiuy/image/upload/v1779450260/jsmanual1_qs4jqn.png)
+
+
 
