@@ -740,7 +740,21 @@ I'm looking forward to the next Django project to impliment these.
 
 
 
+
+
+
+
 ## Addressing the points the project failed on for Re- Evaluation:
+
+## HTML W3 nu HTML checker:
+
+Once deployed to heroku, all html documents were ran through nu html checker from W3. This initialy found a few errors which have now been corrected. 
+
+Please see the following screenshots, showing 0 errors found: 
+
+homepage.html: 
+
+![homepage.hmtl code check screenshot](static/images/gallery/w3checkhomepagehtml.png)
 
 ## (LO1.4) PEP8 Requirements: 
 
