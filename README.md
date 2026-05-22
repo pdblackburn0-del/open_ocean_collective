@@ -755,7 +755,6 @@ Following this 'option + shift + f' was used on every .py file which automatical
 
 # (L01.4) HTML Code quality checker using linting: 
 
-### HTML Validation & Linting
 
 HTML validation and template linting were carried out using **djLint** within VS Code to ensure clean, consistent, and accessible Django template structure throughout the project.
 
@@ -772,7 +771,7 @@ All identified issues were systematically corrected, resulting in:
 
 Linted 15 files, found 0 errors.
 
-![linting showing no errors](static/images/gallery/djlint_noerrors.png) 
+![linting showing no errors](static/images/gallery/lintnoerrors.png) 
 
 
 **Testing (LO4)**
